@@ -588,15 +588,15 @@ public class Avg_return_Main
 		    //  ***** SELECT THE TYPE OF FUND  ***** 
 //		     Fund_Type="EQUITY_ELSS";  // has to be passed
 //		     Fund_Type="EQUITY_LARGE_CAP_NEW_31.03.2017";  // has to be passed
-//		     Fund_Type="EQUITY_MULTI_CAP_NEW_31.03.2017";  // has to be passed
-		     Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
+//		     Fund_Type="EQUITY_MULTI_CAP_NEW_31.05.2017";  // has to be passed
+//		     Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
 		    
 //		      Fund_Type="Test";
 		 
 		  
-//		     Fund_Type="EQUITY_ELSS_NEW_31.03.2017";  // has to be passed
+		     Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
 		     
-//		 Fund_Type="EQUITY_LARGE_CAP_NEW_31.12.2016"; // This field is mandatory
+//		     Fund_Type="EQUITY_LARGE_CAP_NEW_31.05.2017"; // This field is mandatory
 		     
 		  	List<Long> oo = new ArrayList<Long>();
 		  	
@@ -606,21 +606,19 @@ public class Avg_return_Main
 		  	
 		  	
 		 
-		  	LineIterator it_s = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/EQUITY_MID_SMALL_CAP_LIST_31_mar_17.txt"), "UTF-8");	
+		  	LineIterator it_s = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/EQUITY_ELSS_LIST_31_may_17.txt"), "UTF-8");	
 		  	
 		  	   
 	 while (it_s.hasNext()) // if the file has lines 
    	            {
 		               temp_schem_code.add(Long.parseLong(it_s.nextLine()));
    	            }		
-	 
-	 
-	 
 		  	
 	 
 	  System.out.println("File loaded Successfullyy-----");
 		  	
-	        
+	  
+	 	        
 	  ssn = HIbernateSession.getSessionFactory().openSession(); 
       ssn.beginTransaction();
 		 
@@ -649,9 +647,8 @@ public class Avg_return_Main
 		   
 	  }
 	  
-	  	 
-	  
-	  	oo.add((Long.parseLong("0")));
+	  	
+//	  	oo.add((Long.parseLong("0")));
 //	  System.out.println("SIZE OF THE LIST--->>>"+oo.size());
 	  
 	  

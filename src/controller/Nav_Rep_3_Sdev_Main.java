@@ -29,7 +29,9 @@ public class Nav_Rep_3_Sdev_Main
 		Session ssn=null;
 		
 //		String Fund_Type="EQUITY_LARGE_CAP_NEW_31.03.2017";  // has to be passed
-		String Fund_Type="EQUITY_ELSS_NEW_31.03.2017";  // has to be passed
+		
+		String Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+		
 //		String Fund_Type="EQUITY_MULTI_CAP_NEW_31.12.2016";
 //		String Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.12.2016";
 		try
@@ -39,8 +41,11 @@ public class Nav_Rep_3_Sdev_Main
 			 
 			
 			 ArrayList<Long> sch_cd_lst = (ArrayList<Long>) ssn.createQuery("select distinct(key.scheme_code) from avg_return where key.Fund_Type='"+Fund_Type+"'").list();
-			
+				 
 			 
+//			     ArrayList<Long> sch_cd_lst = new ArrayList<Long>();
+//				 long c_o_p = 957;
+//				 sch_cd_lst.add(c_o_p);
 			 		 
 		  for(Long sc_cd : sch_cd_lst)
 		  {
@@ -104,8 +109,7 @@ public class Nav_Rep_3_Sdev_Main
 				  
 				   
 			  }
-			  
-			  
+			  			  
 			  
 			  ssn.getTransaction().commit();
 			  ssn.beginTransaction();
@@ -124,14 +128,18 @@ public class Nav_Rep_3_Sdev_Main
 			 
 			  int jk=0;
 			  
+			  DescriptiveStatistics stats_12 = new DescriptiveStatistics();
+			  DescriptiveStatistics stats_24 = new DescriptiveStatistics();
+			  DescriptiveStatistics stats_36 = new DescriptiveStatistics(); 
+			  
 			  ArrayList<Date> distinct_date_lst = (ArrayList<Date>) ssn.createQuery("select distinct(nav_date) from nav_report_Sdev where Fund_Type=? and scheme_code=? order by nav_date desc").setString(0,Fund_Type).setLong(1,sc_cd).list();
 			  
 			   for(Date dte : distinct_date_lst)
 			   {
 				            
-				      DescriptiveStatistics stats_12 = new DescriptiveStatistics();
-					  DescriptiveStatistics stats_24 = new DescriptiveStatistics();
-					  DescriptiveStatistics stats_36 = new DescriptiveStatistics(); 
+				       stats_12 = new DescriptiveStatistics();
+					   stats_24 = new DescriptiveStatistics();
+					   stats_36 = new DescriptiveStatistics(); 
 				   
 						   ArrayList<nav_report_3_Addition> nr3 =  (ArrayList<nav_report_3_Addition>) ssn.createQuery( "from nav_report_Sdev where Fund_Type='"+Fund_Type+"' and scheme_code="+sc_cd+" and nav_date <=? order by nav_date desc").setDate(0,dte).list();
 							  

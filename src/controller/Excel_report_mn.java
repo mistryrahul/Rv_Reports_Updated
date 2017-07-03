@@ -298,10 +298,15 @@ public class Excel_report_mn
 //           Fund_Type="EQUITY_MULTI_CAP_NEW_30.9.2016"; // This field is mandatory
 //           Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.9.2016";  // has to be passed 
 //           Fund_Type="EQUITY_ELSS_NEW_30.9.2016";  // has to be passed               
+//             Fund_Type="EQUITY_LARGE_CAP_NEW_31.05.2017";
          
-//           Fund_Type="EQUITY_ELSS_NEW_31.03.2017";  // has to be passed
+//           Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
+            
+             Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+         
+//           Fund_Type="EQUITY_ELSS_NEW_31.05.2017";  // has to be passed
 //           Fund_Type="EQUITY_MULTI_CAP_NEW_31.03.2017";  // has to be passed
-             Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
+//             Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
          
 //                         // If required to done MANUALY for some scheme_Code 
 //				         long[] schm_cd_lst = {23,407,447,489,716,748,758,903,905,931,933,942,950,1131,1273,1282,1283,1284,1331,1346,1348,1441,1464,1492,1608,1623,1849,1858,1956,1962,1973,2069,2090,2127,2129,2133,2171,2235,2271,2384,2390,2455,2461,2654,2669,2681,2711,2752,2782,2860,2896,3065,3247,3249,3281,3305,3317,3461,3581,3587,3626,3641,3644,4282,4457,4980,5153,6075,7329,7615,7747,7785,7841,7870,7874,8151,8217,8229,8250,8463,9078,9240,11889,12836,12860,12865,14493,14559,15557,16672,16706,21293,21769,24776,25378,25473,25995,26481,26778,27106,27775,28707,29082,29277,29359,29360,29424,29786,30021,30022,30395,30396,30397,31046,31353,31451,31571,31642,31837,32280,32348,32542,32658,33053,35321};

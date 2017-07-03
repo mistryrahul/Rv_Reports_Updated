@@ -53,18 +53,18 @@ public class Debt_Report_1_Main
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(117, 02, 31);
-		    
+		    Date Date_As_On_Report= new Date(117, 05, 30);  // as no date should be fixed before running
+ 		    
 //		    String Fund_Type="Debt : Liquid";
 //		    String Fund_Type="Debt : Ultra Short Term";
 		    
 		    
-		   String Fund_Type="Debt : Short Term";
+//		   String Fund_Type="Debt : Short Term";
 		    
 		   String dd_1 = new SimpleDateFormat("yyyy-MM-dd").format(Date_As_On_Report);
 		   
 //		    String Fund_Type="Debt : Medium & Long Term";
-//		    String Fund_Type="Hybrid : Debt Oriented";
+		    String Fund_Type="Hybrid : Debt Oriented";
 		    
 		    String Comment=Fund_Type+"_as_on_"+dd_1;
 		    
@@ -395,12 +395,12 @@ public class Debt_Report_1_Main
 										             {
 										            	 if(bb.getAum()<100)
 										            	 {
-										            		 bb.setStar("unrated");
+										            		 bb.setStar("Unrated");
 										            	 }
 										            	 
 										            	 ssn.save(bb);
 										             }
-										             System.out.println("all aum below 100 crore updated as unrated");
+										             System.out.println("all aum below 100 crore updated as Unrated");
 										             
 //										             Query query_1 = ssn.createQuery("update Debt_Report_1 set star='Unrated' where aum < 100");
 ////										             

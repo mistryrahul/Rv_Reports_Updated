@@ -50,7 +50,9 @@ public class Hybrid_Report_Main
 				ssn = HIbernateSession.getSessionFactory().openSession(); 
 			    ssn.beginTransaction();	
 			    
-			    Date Date_As_On_Report= new Date(117, 02, 31);
+			    //   as on date should be fixed before executing
+			    
+			    Date Date_As_On_Report= new Date(117, 05, 30);
 			    
 //			    String Fund_Type="Debt : Liquid";
 //			    String Fund_Type="Debt : Ultra Short Term";
@@ -377,7 +379,7 @@ public class Hybrid_Report_Main
 											             {
 											            	 if(bb.getAum()<100)
 											            	 {
-											            		 bb.setStar("unrated");
+											            		 bb.setStar("Unrated");
 											            	 }
 											            	 
 											            	 ssn.save(bb);

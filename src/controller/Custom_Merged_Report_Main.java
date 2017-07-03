@@ -34,7 +34,7 @@ public class Custom_Merged_Report_Main
 		
 //		  Fund_Type="EQUITY_LARGE_CAP_NEW_31.03.2017";  // has to be passed
 		  
-		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
+//		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
 		
 //		  Fund_Type="EQUITY_ELSS_NEW_31.03.2017";  // has to be passed
 		
@@ -42,7 +42,10 @@ public class Custom_Merged_Report_Main
 		  
 //		  Fund_Type="EQUITY_MULTI_CAP_NEW_31.12.2016";  // has to be passed
 //		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.12.2016";  // has to be passed
-//		  Fund_Type="EQUITY_ELSS_NEW_31.12.2016";  // has to be passed
+//		  Fund_Type="EQUITY_ELSS_NEW_31.05.2017";  // has to be passed
+//		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
+		
+		  Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
 			
 		Session ssn = HIbernateSession.getSessionFactory().openSession(); 
 	    ssn.beginTransaction();		

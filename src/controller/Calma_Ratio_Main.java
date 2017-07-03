@@ -31,10 +31,17 @@ public class Calma_Ratio_Main
 //	    Fund_Type="EQUITY_ELSS"; // This field is mandatory //
 //	     Fund_Type="EQUITY_SML"; // This field is mandatory // 
 	     
-//	     Fund_Type="EQUITY_ELSS_NEW_31.03.2017";  // has to be passed
+//	     Fund_Type="EQUITY_ELSS_NEW_31.05.2017";  // has to be passed
+	     
+//	     Fund_Type="EQUITY_MULTI_CAP_NEW_31.05.2017";	
+	     
+//	     Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
+	     
+	     Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+	     
 //	     Fund_Type="EQUITY_MULTI_CAP_NEW_31.03.2017";  // has to be passed
 	     
-	     Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
+//	     Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
 	     
 //	     Fund_Type="EQUITY_LARGE_CAP_NEW_31.03.2017";  // has to be passed  
 //	     Fund_Type="EQUITY_MULTI_CAP_NEW_30.9.2016"; // This field is mandatory 
