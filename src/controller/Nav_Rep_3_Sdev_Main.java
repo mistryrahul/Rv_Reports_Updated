@@ -243,7 +243,7 @@ public class Nav_Rep_3_Sdev_Main
 		
 	}
 
-	private static void Save_To_Db_Standard_Deviation(Session ssn ,long sch_cd, String fund_Type, int i, double sdev_Res,Date dte) 
+	public static void Save_To_Db_Standard_Deviation(Session ssn ,long sch_cd, String fund_Type, int i, double sdev_Res,Date dte) 
 	{
 	    
 		  Standard_Dev sd_ob;

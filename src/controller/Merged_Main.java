@@ -46,7 +46,7 @@ public class Merged_Main
 		 
 //		   Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
 		 
-		   Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+		   Fund_Type="EQUITY_ELSS_NEW_30.09.2017_Test";  // has to be passed
 		 
 //		   Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
 		 
@@ -478,7 +478,7 @@ public class Merged_Main
 	}
 
 	
-	static java.util.Date get_Date_Corrected(java.util.Date ddd)
+	public static java.util.Date get_Date_Corrected(java.util.Date ddd)
 	{
 		
 		// Date corrected as in the Stock db all date are quarter dates only 
@@ -506,7 +506,7 @@ public class Merged_Main
 	  	  return ddd;
 	}
 
-	static ArrayList<java.util.Date> get_list_of_dates_Calmar(java.util.Date day, long sc) throws ParseException
+	public static ArrayList<java.util.Date> get_list_of_dates_Calmar(java.util.Date day, long sc) throws ParseException
 	{
 			  java.util.Date date_nav_chk_end=null;
 			  
@@ -547,7 +547,7 @@ public class Merged_Main
 	}		
 	
 	
-	static ArrayList<nav_hist> get_list_of_dates_db_nw(java.util.Date day, long scheme_code) throws ParseException
+	public static ArrayList<nav_hist> get_list_of_dates_db_nw(java.util.Date day, long scheme_code) throws ParseException
 	{
 			  SimpleDateFormat formatter=null;
 			  java.util.Date date_nav_chk_start=null;

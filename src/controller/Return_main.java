@@ -22,7 +22,7 @@ import sessionFactory.HIbernateSession;
 
 public class Return_main 
 {
-	static ArrayList<nav_hist> get_list_of_dates_db(String day, int scheme_code) throws ParseException
+	public static ArrayList<nav_hist> get_list_of_dates_db(String day, int scheme_code) throws ParseException
 	{
 			  SimpleDateFormat formatter=null;
 			  java.util.Date date_nav_chk_start=null;
@@ -50,13 +50,11 @@ public class Return_main
 			  
 //			  ssn.getTransaction().commit();
 			  ssn.close();
-			  
-			  
-			  
+			  			  			  
 		 return lst;
 	}
 	
-	static String get_date(String day, int months, String opr) throws ParseException
+	public static String get_date(String day, int months, String opr) throws ParseException
 	{
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		  Calendar cal = Calendar.getInstance();
@@ -72,6 +70,8 @@ public class Return_main
 		    	  cal.add(Calendar.MONTH,-months);
 		      }
 	      java.util.Date ddd = cal.getTime();
+	      
+//	      ddd.setDate(1);
 	      
 	      if(ddd.getMonth()==0 || ddd.getMonth()==2 || ddd.getMonth()==4 || ddd.getMonth()==6 || ddd.getMonth()==7 || ddd.getMonth()==9 || ddd.getMonth()==11)
 	      {
@@ -107,6 +107,8 @@ public class Return_main
 		  
 		  Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
 		  
+//		  Fund_Type="Custom_Report";  // has to be passed
+		  
 //		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_31.03.2017";  // has to be passed
 		  
 //		  Fund_Type="EQUITY_MULTI_CAP_NEW_31.03.2017";  // has to be passed
@@ -119,6 +121,7 @@ public class Return_main
 		  nav_hist tmp_obj=null;
 		  Session ssn=null;
 		  int ret_lst_mnths[] = {-3,-6,-12,-18,-24,-30,-36,-42,-48,-54,-60,9,12,18,24,36}; // list of month interval for which data need to be calculated
+//		  int ret_lst_mnths[] = {-36,-60,-84,-120}; // list of month interval for which data need to be calculated
 //		  int ret_lst_mnths[] = {-3}; // list of month interval for which data need to be calculated
 		  int db_flag=1;
 		  
@@ -148,6 +151,14 @@ public class Return_main
 											
 									 	scheme_code_lst_lng = (ArrayList<Long>) criteria_1.list();
 			 
+//			 scheme_code_lst_lng = new ArrayList<Long>();
+//			 
+//			 scheme_code_lst_lng.add((long)1110 );
+//			 scheme_code_lst_lng.add((long)13017 );
+//			 scheme_code_lst_lng.add((long)1482 );
+//			 scheme_code_lst_lng.add((long)2660 );
+//			 scheme_code_lst_lng.add((long)2321 );
+			 
 			 
 //			 scheme_code_lst_lng = new ArrayList<Long>();
 //			 scheme_code_lst_lng.add((long)7615);
@@ -158,17 +169,14 @@ public class Return_main
 		 	}
 		 	
 		 	System.out.println("SCHEMCODE LIST CONVERTED:----->>");
-		 	
-			 
+		 				 
 	  	    
-	  	  LineIterator it = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/date_list.txt"), "UTF-8"); 
-	  	   
+	  	   LineIterator it = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/date_list.txt"), "UTF-8"); 
+//		  LineIterator it = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/custom_date_list.txt"), "UTF-8"); 
 		  	 while(it.hasNext())
 		     	{
 			            	date_lst.add(it.nextLine());
-		     	}
-		  	 
-		   
+		     	}		  	 		  
 		  	
 		  	for(String scheme_code : scheme_code_lst) //Travarsing SchemeCode List
 		  	{
@@ -196,11 +204,36 @@ public class Return_main
 //		  				   System.out.println("Date--->"+b.getScheme_code());
 		  				   
 		  				   obj = new nav_report_3_stable();
-		  				   double res = (((tmp_obj.getAdjnavrs() - b.getAdjnavrs())/ b.getAdjnavrs())*100);
+		  				   double res = (((tmp_obj.getAdjnavrs() - b.getAdjnavrs())/ b.getAdjnavrs())*100); 
+		  				   
+//		  				   double res_1=0,res_2=0,final_res=0, temp_3,temp_4;
+//		  				   
+//		  				   res_1 = (1 + res/100);
+////		  				     System.out.println("RES----->"+res_1);
+//		  				     
+////		  				     System.out.println("ABS-->>"+Math.abs(mnths));
+//		  				     temp_4 = Math.abs(mnths);
+//		  				     
+//		  				     temp_3 = (12/temp_4) ;
+////		  				   System.out.println("Temp-3----->"+temp_3);
+//		  				     
+//		  				   res_2 = Math.pow(res_1,temp_3) - 1;
+//		  				   
+////		  				     System.out.println("RES_2----->"+res_2);
+//		  				   
+//		  				     final_res = res_2 * 100 ;
+////		  				    System.out.println("FINAL_RES----->"+res_2);
+		  				   
 		  				   obj.setComment(Integer.toString(mnths));
 		  				   obj.setNav_date(b.getKey().getNavdate());
 		  				   obj.setNav_from_date(tmp_obj.getKey().getNavdate());
+		  				   
 		  				   obj.setNav_value(res);
+//		  				   obj.setNav_value(final_res);
+		  				   
+		  				   
+		  				
+		  				   
 		  				   obj.setScheme_Code(Long.parseLong(scheme_code));
 		  				   obj.setFund_Type(Fund_Type);
 		  				   ssn.save(obj);
@@ -227,10 +260,36 @@ public class Return_main
 		  				   
 		  				   obj = new nav_report_3_stable();
 		  				   double res = (((b.getAdjnavrs() - tmp_obj.getAdjnavrs())/ tmp_obj.getAdjnavrs())*100);
+		  				   
+		  				  
+		  				   
+//		  				 double res_1=0,res_2=0,final_res=0, temp_3,temp_4;
+//		  				   
+//		  				   res_1 = (1 + res/100);
+////		  				     System.out.println("RES----->"+res_1);
+//		  				     
+////		  				     System.out.println("ABS-->>"+Math.abs(mnths));
+//		  				     temp_4 = Math.abs(mnths);
+//		  				     
+//		  				     temp_3 = (12/temp_4) ;
+////		  				   System.out.println("Temp-3----->"+temp_3);
+//		  				     
+//		  				   res_2 = Math.pow(res_1,temp_3) - 1;
+//		  				   
+////		  				     System.out.println("RES_2----->"+res_2);
+//		  				   
+//		  				     final_res = res_2 * 100 ;
+////		  				    System.out.println("FINAL_RES----->"+res_2);
+		  				   
+		  				   
+		  				   
 		  				   obj.setComment(Integer.toString(mnths));
 		  				   obj.setNav_date(b.getKey().getNavdate());
 		  				   obj.setNav_from_date(tmp_obj.getKey().getNavdate());
+//		  				   
 		  				   obj.setNav_value(res);
+//		  				   obj.setNav_value(final_res);
+		  				   
 		  				   obj.setScheme_Code(Long.parseLong(scheme_code));
 		  				   obj.setFund_Type(Fund_Type);
 		  				   ssn.save(obj);

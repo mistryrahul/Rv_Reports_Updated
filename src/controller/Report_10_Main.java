@@ -215,7 +215,7 @@ public class Report_10_Main
 	}
 	
 	
-	static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, int scheme_code) throws ParseException
+	public static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, int scheme_code) throws ParseException
 	{
 			  SimpleDateFormat formatter=null;
 			  java.util.Date date_nav_chk_start=null;

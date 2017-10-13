@@ -210,7 +210,7 @@ public class Excel_report_mn
 		   
 	}
 	
-	private static int Get_Rank(String comment, Long s_code, Session ssn , String Fund_Type) {
+	public static int Get_Rank(String comment, Long s_code, Session ssn , String Fund_Type) {
 	
 		ArrayList<String> tmp =new ArrayList<String>();
 		int r=0;
@@ -302,7 +302,7 @@ public class Excel_report_mn
          
 //           Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
             
-             Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+             Fund_Type="EQUITY_ELSS_NEW_30.09.2017_Test";  // has to be passed
          
 //           Fund_Type="EQUITY_ELSS_NEW_31.05.2017";  // has to be passed
 //           Fund_Type="EQUITY_MULTI_CAP_NEW_31.03.2017";  // has to be passed
@@ -473,7 +473,7 @@ public class Excel_report_mn
 
 	}
 
-	private static void Get_Cat_Avg_Indicator ( ArrayList<Long> scheme_code_list, ArrayList<String> comment_list , String Fund_Type ) 
+	public static void Get_Cat_Avg_Indicator ( ArrayList<Long> scheme_code_list, ArrayList<String> comment_list , String Fund_Type ) 
 	{
 		HSSFWorkbook workbook2 = new HSSFWorkbook();
 	    HSSFSheet sheet2 = workbook2.createSheet("AvgReport2");

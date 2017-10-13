@@ -309,7 +309,7 @@ public class Avg_return_Main
 	}
 	
 	
-	private static void Calculate_Rank(String fund_type) 
+	public static void Calculate_Rank(String fund_type) 
 	{
 		
 	try
@@ -406,7 +406,7 @@ public class Avg_return_Main
 		
 	}
 	
-	static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, int scheme_code, Session ssn) throws ParseException
+	public static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, int scheme_code, Session ssn) throws ParseException
 	{
 			  SimpleDateFormat formatter=null;
 			  java.util.Date date_nav_chk_start=null;
@@ -594,7 +594,7 @@ public class Avg_return_Main
 //		      Fund_Type="Test";
 		 
 		  
-		     Fund_Type="EQUITY_ELSS_NEW_30.06.2017";  // has to be passed
+		     Fund_Type="EQUITY_LARGE_CAP_NEW_30.09.2017";  // has to be passed
 		     
 //		     Fund_Type="EQUITY_LARGE_CAP_NEW_31.05.2017"; // This field is mandatory
 		     
@@ -606,7 +606,7 @@ public class Avg_return_Main
 		  	
 		  	
 		 
-		  	LineIterator it_s = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/EQUITY_ELSS_LIST_31_may_17.txt"), "UTF-8");	
+		  	LineIterator it_s = FileUtils.lineIterator(new File("/home/rv/Desktop/files_to_upload/Equity_Large_Cap_2017_Closed.txt"), "UTF-8");	
 		  	
 		  	   
 	 while (it_s.hasNext()) // if the file has lines 
@@ -636,14 +636,14 @@ public class Avg_return_Main
 	  {
 		  ArrayList<Scheme_Detail> schm_dtl = (ArrayList<Scheme_Detail>) ssn.createQuery("from scheme_details_fulls where schemecode=? and type_code!=2 and plan!=5").setLong(0, temp_schem_code.get(indx)).list();
 		    
-		    if(schm_dtl.size()==0)
-		    {
-//		    	oo.remove(indx);
-		    }
-		    else
-		    {
-		    	oo.add(temp_schem_code.get(indx));
-		    }
+			    if(schm_dtl.size()==0)
+			    {
+	               // oo.remove(indx);
+			    }
+			    else
+			    {
+			    	oo.add(temp_schem_code.get(indx));
+			    }
 		   
 	  }
 	  
@@ -789,7 +789,7 @@ public class Avg_return_Main
 	 }
 	}
 
-	private static void Save_Last_Quarter_Value(Date from_date ,Date to_date, long scheme_code, String Fund_Type ,Session ssn) 
+	public static void Save_Last_Quarter_Value(Date from_date ,Date to_date, long scheme_code, String Fund_Type ,Session ssn) 
 	{
 	   
 		composite_pk_avg_re_model ob_pk = new composite_pk_avg_re_model();
@@ -841,7 +841,7 @@ public class Avg_return_Main
 	}
 
 
-	private static nav_hist Fill_Blanks(Date ddd, long ob, Date date_tmp,
+	public static nav_hist Fill_Blanks(Date ddd, long ob, Date date_tmp,
 			List<nav_hist> nav_hst_lst, Session ssn) throws ParseException {
 	       ArrayList<java.util.Date> date_holder = new ArrayList<Date>();
 		   

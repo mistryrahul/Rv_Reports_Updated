@@ -481,7 +481,7 @@ public class Report_5_Main
 
 	}
 
-	private static void GENERATE_RANK(String Fund_Type) 
+	public static void GENERATE_RANK(String Fund_Type) 
 	{
 		
 		SessionFactory sessionfactry = new Configuration().configure().buildSessionFactory();
@@ -700,7 +700,7 @@ public class Report_5_Main
 	}
 	
 	
-	static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, long scheme_code) throws ParseException
+	public static ArrayList<nav_hist> get_list_of_dates_db(java.util.Date day, long scheme_code) throws ParseException
 	{
 			  SimpleDateFormat formatter=null;
 			  java.util.Date date_nav_chk_start=null;

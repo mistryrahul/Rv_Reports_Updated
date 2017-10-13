@@ -178,7 +178,7 @@ public class Calma_Ratio_Main
  		         
 	}
 	
-	private static void GET_CALMA_RATIO(Calma_Ratio_Model crm, int yr_incr,
+	public static void GET_CALMA_RATIO(Calma_Ratio_Model crm, int yr_incr,
 			Date temp_date) 
 	{
 	             
@@ -206,7 +206,7 @@ public class Calma_Ratio_Main
 		
 	}
 
-	private static void GET_CAGR(Calma_Ratio_Model crm, int yr_incr,
+	public static void GET_CAGR(Calma_Ratio_Model crm, int yr_incr,
 			Date temp_date, Session ssn) throws ParseException 
 	{
 		  double cagr=0.0;
@@ -279,7 +279,7 @@ if(possible_date_lst_2.size()!=0)
 		
 	}
 
-	private static void GET_MAX_DRAW_DOWN(Calma_Ratio_Model crm, int yr_incr,
+	public static void GET_MAX_DRAW_DOWN(Calma_Ratio_Model crm, int yr_incr,
 			Date temp_date, Session ssn) throws ParseException 
 	{
 		

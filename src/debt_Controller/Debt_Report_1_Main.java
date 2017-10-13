@@ -53,16 +53,12 @@ public class Debt_Report_1_Main
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(117, 05, 30);  // as no date should be fixed before running
+		    Date Date_As_On_Report= new Date(117, 8, 30);  // as on date should be fixed before running
  		    
 //		    String Fund_Type="Debt : Liquid";
-//		    String Fund_Type="Debt : Ultra Short Term";
-		    
-		    
-//		   String Fund_Type="Debt : Short Term";
-		    
-		   String dd_1 = new SimpleDateFormat("yyyy-MM-dd").format(Date_As_On_Report);
-		   
+//		    String Fund_Type="Debt : Ultra Short Term";		    
+//		    String Fund_Type="Debt : Short Term";		    
+		    String dd_1 = new SimpleDateFormat("yyyy-MM-dd").format(Date_As_On_Report);		   
 //		    String Fund_Type="Debt : Medium & Long Term";
 		    String Fund_Type="Hybrid : Debt Oriented";
 		    

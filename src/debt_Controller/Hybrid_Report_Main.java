@@ -38,7 +38,6 @@ public class Hybrid_Report_Main
 			double ans_1=0,ans_2=0,ans_3=0,fin_res=0;
 			
 			ArrayList<Hybrid_Report_Model> dr_m = new ArrayList<Hybrid_Report_Model>();
-			
 			double ret_12_mnths=0,ret_36_mnths=0,ret_24_mnths=0;
 			
 			long chek_sch_cd=0;
@@ -52,7 +51,7 @@ public class Hybrid_Report_Main
 			    
 			    //   as on date should be fixed before executing
 			    
-			    Date Date_As_On_Report= new Date(117, 05, 30);
+			    Date Date_As_On_Report= new Date(117,8, 30);
 			    
 //			    String Fund_Type="Debt : Liquid";
 //			    String Fund_Type="Debt : Ultra Short Term";

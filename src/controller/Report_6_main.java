@@ -198,7 +198,7 @@ public class Report_6_main {
 	}
 
 
-	private static void Calculate_Save_Actual_Values(Report_6_Model r6m,int no_of_quarters, Avg_ret_Model arm,Session ssn,String Fund_Type) 
+	public static void Calculate_Save_Actual_Values(Report_6_Model r6m,int no_of_quarters, Avg_ret_Model arm,Session ssn,String Fund_Type) 
 	{
 	    
 		int qtrs=0;

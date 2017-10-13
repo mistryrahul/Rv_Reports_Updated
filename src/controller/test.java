@@ -16,6 +16,8 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 
+import com.mysql.jdbc.Statement;
+
 import debt_Model.Avg_maturity;
 import debt_Model.Credit_rating_sum_groups;
 import model.Avg_ret_Model;
@@ -67,9 +69,27 @@ public class test
 //		  cal.add(Calendar.DATE,-40);
 //	      java.util.Date ddd = cal.getTime();	
 //	      
-	      
-//	      Session ssn = HIbernateSession.getSessionFactory().openSession(); 
-//		  ssn.beginTransaction();		
+	      System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-=-=-==-=-=-=-=-=-=-=");
+	      Session ssn = HIbernateSession.getSessionFactory().openSession(); 
+		  ssn.beginTransaction();		
+		  String Fund_Type;
+		  Fund_Type="EQUITY_LARGE_CAP_NEW_30.09.2017_Test";
+		  
+		  
+		  
+		  String sql = "insert into Custom_Merged_Report_W_Rank(from_date,scheme_code,quarter,Scheme_Name,backward_3,backward_6,backward_12,backward_18,backward_24,backward_30,backward_36,backward_42,backward_48,backward_54,backward_60,forwar_9_mnths,forwar_12_mnths ,forwar_18_mnths ,forwar_36_mnths,last_4_neg_avg_cat_ret_otb ,last_4_pos_avg_cat_ret_otb,last_8_neg_avg_cat_ret_otb,last_8_pos_avg_cat_ret_otb ,last_12_neg_avg_cat_ret_otb ,last_12_pos_avg_cat_ret_otb ,last_16_neg_avg_cat_ret_otb ,last_16_pos_avg_cat_ret_otb ,last_20_neg_avg_cat_ret_otb ,last_20_pos_avg_cat_ret_otb ,last_4_neg_act_ret_sum,last_8_neg_act_ret_sum,last_12_neg_act_ret_sum,last_16_neg_act_ret_sum,last_20_neg_act_ret_sum,last_4_pos_act_ret_sum,last_8_pos_act_ret_sum,last_12_pos_act_ret_sum,last_16_pos_act_ret_sum,last_20_pos_act_ret_sum,cri,no_of_stock,year_1,year_1_1 ,year_1_2 ,year_1_3 ,year_1_4 ,max_Drawdown_year_1,max_Drawdown_year_2,max_Drawdown_year_3,max_Drawdown_year_4,max_Drawdown_year_5,avg_return_50_minus_200,last_200_day_return,ex_ratio,sc_aum,Fund_Type,Sdev_12_mnths,Sdev_24_mnths,Sdev_36_mnths,last_4_pos_nav_ret_value_sum,last_8_pos_nav_ret_value_sum,last_12_pos_nav_ret_value_sum,last_16_pos_nav_ret_value_sum,last_20_pos_nav_ret_value_sum) select from_date, scheme_code, quarter,Scheme_Name, backward_3, backward_6, backward_12, backward_18, backward_24, backward_30, backward_36,backward_42,backward_48, backward_54, backward_60 , forwar_9_mnths, forwar_12_mnths , forwar_18_mnths , forwar_36_mnths , last_4_neg_avg_cat_ret_otb , last_4_pos_avg_cat_ret_otb,  last_8_neg_avg_cat_ret_otb,  last_8_pos_avg_cat_ret_otb , last_12_neg_avg_cat_ret_otb , last_12_pos_avg_cat_ret_otb , last_16_neg_avg_cat_ret_otb , last_16_pos_avg_cat_ret_otb ,  last_20_neg_avg_cat_ret_otb , last_20_pos_avg_cat_ret_otb , last_4_neg_act_ret_sum, last_8_neg_act_ret_sum, last_12_neg_act_ret_sum, last_16_neg_act_ret_sum, last_20_neg_act_ret_sum, last_4_pos_act_ret_sum, last_8_pos_act_ret_sum, last_12_pos_act_ret_sum, last_16_pos_act_ret_sum, last_20_pos_act_ret_sum, cri, no_of_stock,  year_1, year_1_1 , year_1_2 , year_1_3 , year_1_4 , max_Drawdown_year_1, max_Drawdown_year_2, max_Drawdown_year_3, max_Drawdown_year_4, max_Drawdown_year_5, avg_return_50_minus_200, last_200_day_return,  ex_ratio, sc_aum, Fund_Type ,Sdev_12_mnths,Sdev_24_mnths,Sdev_36_mnths,last_4_pos_nav_ret_value_sum,last_8_pos_nav_ret_value_sum,last_12_pos_nav_ret_value_sum,last_16_pos_nav_ret_value_sum,last_20_pos_nav_ret_value_sum from Report_Merged_5_6_8_Model where backward_60!=0 and Fund_Type='"+Fund_Type+"'";
+		  
+		  
+		 
+		  Query query = ssn.createSQLQuery(sql);
+		  int result = query.executeUpdate();
+		  ssn.getTransaction().commit();
+		  
+		  System.out.println("<----Executed Properly----->");
+		  
+		  System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-==-==-=-=-==-=-=-=-=-=-=-=");
+		  
+		  ssn.close();
 //		  
 //		  double Sdev_Res12=0;
 //		  double Sdev_Res24=0;

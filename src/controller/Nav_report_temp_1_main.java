@@ -271,7 +271,7 @@ public class Nav_report_temp_1_main {
 
 
 
-	private static void Generate_rank(String Fund_Type) 
+	public static void Generate_rank(String Fund_Type) 
 	{
 		SessionFactory sessionfactry = new Configuration().configure().buildSessionFactory();
 		Session ssn = sessionfactry.openSession();

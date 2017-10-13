@@ -60,6 +60,7 @@
         <mapping class="model.Schemeisin"/> 
         <mapping class="model.nav_report_3_Addition"/>
         <mapping class="model.Standard_Dev"/>
+        <mapping class="model.Custom_Report"/>
         <!-- Debt Reports -->
         <mapping class="debt_Model.Avg_maturity"/>
         <mapping class="debt_Model.Debt_Report_1"/>
@@ -71,6 +72,7 @@
         <mapping class="controller.Excel_Rank_generator_Model"/>
         <!-- Others Reports -->
          <mapping class="Others_Model.Client_Databse_email"/>
+         
         
     </session-factory>
 </hibernate-configuration>
