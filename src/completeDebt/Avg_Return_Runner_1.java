@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import controller.Avg_return_Main;
@@ -79,6 +80,8 @@ public class Avg_Return_Runner_1
 	  ssn = HIbernateSession.getSessionFactory().openSession(); 
       ssn.beginTransaction();
 		 
+  
+	
 //	  ArrayList<nav_hist> nav_hist_lst = (ArrayList<nav_hist>) ssn.createQuery("from nav_hist_full where ");
       
       

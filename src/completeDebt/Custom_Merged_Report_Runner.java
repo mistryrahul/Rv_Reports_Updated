@@ -1,26 +1,25 @@
-package controller;
+package completeDebt;
 
 import java.util.ArrayList;
 
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 import model.Custom_Merged_Report_W_Rank;
 import sessionFactory.HIbernateSession;
 
-public class Custom_Merged_Report_Main 
+public class Custom_Merged_Report_Runner 
 {
-	public static void main(String[] args) 
+ 
+	void Generate_Rank(String Fund_Type)
 	{
-		String Fund_Type;
+//		String Fund_Type;
 		double temp_val_hldr;
 		int rank_hldr=0;
 		double retval=-99989;
 	    int db_flag=1;// for data base session Resting
 	    int same_rank_flag=0;
 		try
-		{     
-			 
+		{     			 
 //		String colum_lst[] = {"backward_6","backward_12","backward_18","backward_24","backward_30","backward_36","backward_42","backward_48","backward_54","backward_60","forwar_9_mnths","forwar_12_mnths","forwar_18_mnths","forwar_36_mnths","last_4_neg_avg_cat_ret_otb","last_4_pos_avg_cat_ret_otb","last_8_neg_avg_cat_ret_otb","last_8_pos_avg_cat_ret_otb","last_12_neg_avg_cat_ret_otb","last_12_pos_avg_cat_ret_otb","last_16_neg_avg_cat_ret_otb","last_16_pos_avg_cat_ret_otb", "last_20_neg_avg_cat_ret_otb" , "last_20_pos_avg_cat_ret_otb","cri","no_of_stock","year_1_1","year_1_2","year_1_3","year_1_4","max_Drawdown_year_1","max_Drawdown_year_2","max_Drawdown_year_3","max_Drawdown_year_4","max_Drawdown_year_5","avg_return_50_minus_200","last_200_day_return"};
 
 		String colum_lst[] = {"backward_6","backward_12","backward_18","backward_24","backward_30","backward_36","backward_42","backward_48","backward_54","backward_60","forwar_9_mnths","forwar_12_mnths","forwar_18_mnths","forwar_36_mnths","last_4_neg_avg_cat_ret_otb","last_4_pos_avg_cat_ret_otb","last_8_neg_avg_cat_ret_otb","last_8_pos_avg_cat_ret_otb","last_12_neg_avg_cat_ret_otb","last_12_pos_avg_cat_ret_otb","last_16_neg_avg_cat_ret_otb","last_16_pos_avg_cat_ret_otb", "last_20_neg_avg_cat_ret_otb" , "last_20_pos_avg_cat_ret_otb","last_4_neg_act_ret_sum","last_8_neg_act_ret_sum","last_12_neg_act_ret_sum","last_16_neg_act_ret_sum","last_20_neg_act_ret_sum","last_4_pos_act_ret_sum","last_8_pos_act_ret_sum","last_12_pos_act_ret_sum","last_16_pos_act_ret_sum","last_20_pos_act_ret_sum","cri","no_of_stock","year_1_1","year_1_2","year_1_3","year_1_4","max_Drawdown_year_1","max_Drawdown_year_2","max_Drawdown_year_3","max_Drawdown_year_4","max_Drawdown_year_5","avg_return_50_minus_200","last_200_day_return","Sdev_12_mnths","Sdev_24_mnths","Sdev_36_mnths"};		 
@@ -45,7 +44,7 @@ public class Custom_Merged_Report_Main
 //		  Fund_Type="EQUITY_ELSS_NEW_31.05.2017";  // has to be passed
 //		  Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.06.2017";  // has to be passed
 		
-		 Fund_Type="EQUITY_LARGE_CAP_NEW_30.09.2017";  // has to be passed
+//		 Fund_Type="EQUITY_LARGE_CAP_NEW_30.09.2017";  // has to be passed
 			
 		Session ssn = HIbernateSession.getSessionFactory().openSession(); 
 	    ssn.beginTransaction();		
@@ -1488,7 +1487,6 @@ public class Custom_Merged_Report_Main
 			System.out.println("<<<<<----------- Rank Generation Complete------------>>>>");
 		   	
 		}
-		
-
 	}
+	
 }

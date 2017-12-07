@@ -72,7 +72,8 @@
         <mapping class="controller.Excel_Rank_generator_Model"/>
         <!-- Others Reports -->
          <mapping class="Others_Model.Client_Databse_email"/>
-         
+        <!-- New ELSS -->
+         <mapping class="New_Elss_Model.New_Elss_Model"/> 
         
     </session-factory>
 </hibernate-configuration>

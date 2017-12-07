@@ -571,7 +571,7 @@ public class Avg_return_Main
         int date_loop_flag=0;
         List<java.util.Date> dt_lst=null;
         
-        ArrayList<java.util.Date> date_holder =new ArrayList<java.util.Date>();;
+        ArrayList<java.util.Date> date_holder =new ArrayList<java.util.Date>();
         
         int rec_found_flag=0;  // default value 0
 		ArrayList<nav_hist> tmp_dt_lst=null;
