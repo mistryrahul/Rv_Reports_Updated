@@ -16,7 +16,7 @@ public class test_2 {
 		// TODO Auto-generated method stub
 		String Output_File_Name="";
 		String test_sql="";
-		 String Fund_Type="EQUITY_MID_SMALL_CAP_NEW_30.09.2017_Test";  // has to be passed
+		 String Fund_Type="EQUITY_LARGE_CAP_NEW_31.12.2017";  // has to be passed
 		 
 		 System.out.println("<--------------------Generating Csv---Please open folder /var/lib/mysql-Files to see the reports------------------->");
          

@@ -51,7 +51,7 @@ public class Hybrid_Report_Main
 			    
 			    //   as on date should be fixed before executing
 			    
-			    Date Date_As_On_Report= new Date(117,8, 30);
+			    Date Date_As_On_Report= new Date(117,11,31);
 			    
 //			    String Fund_Type="Debt : Liquid";
 //			    String Fund_Type="Debt : Ultra Short Term";

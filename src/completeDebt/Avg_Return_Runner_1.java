@@ -158,7 +158,7 @@ public class Avg_Return_Runner_1
 					    	   ddd.setDate(30);
 					      }
 					      				// set limit to the latest Quarter 	     
-					      if(ddd.compareTo(new Date(117,9,30))==0) //set upper date limit
+					      if(ddd.compareTo(new Date(117,11,31))==1) //set upper date limit
 					      {
 					    	  date_loop_flag=1;
 					      }

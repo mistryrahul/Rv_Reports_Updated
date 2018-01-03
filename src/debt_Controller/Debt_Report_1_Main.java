@@ -53,7 +53,7 @@ public class Debt_Report_1_Main
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(117, 8, 30);  // as on date should be fixed before running
+		    Date Date_As_On_Report= new Date(117, 11, 31);  // as on date should be fixed before running
  		    
 //		    String Fund_Type="Debt : Liquid";
 //		    String Fund_Type="Debt : Ultra Short Term";		    
