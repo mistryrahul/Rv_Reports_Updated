@@ -845,7 +845,8 @@ public class Avg_return_Main
 			List<nav_hist> nav_hst_lst, Session ssn) throws ParseException {
 	       ArrayList<java.util.Date> date_holder = new ArrayList<Date>();
 		   
-	       if(ssn.getTransaction().isActive()==false)
+//	       if(ssn.getTransaction().isActive()==false)
+	       if(ssn.getTransaction()!=null)
 	       {
 //	    	   ssn.getTransaction();
 	    	   ssn.beginTransaction();
