@@ -1,5 +1,7 @@
 package debt_Controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +15,9 @@ import org.apache.poi.util.SystemOutLogger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.jdbc.Work;
+
+import com.mysql.jdbc.Statement;
 
 import debt_Model.Avg_maturity;
 import debt_Model.Credit_rating_sum_groups;
@@ -53,7 +58,7 @@ public class Debt_Report_1_Main
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(117, 11, 31);  // as on date should be fixed before running
+		    Date Date_As_On_Report= new Date(118, 02, 31);  // as on date should be fixed before running
  		    
 //		    String Fund_Type="Debt : Liquid";
 //		    String Fund_Type="Debt : Ultra Short Term";		    
@@ -375,15 +380,26 @@ public class Debt_Report_1_Main
 		             ssn.beginTransaction();
 		             
 //		                                           ///////----------xxxxx(Start)------------////                           
-//		                  
+//		                                             
+		             
+		             ssn.doWork(new Work() {			
+		       			@Override
+		       			public void execute(Connection conn) throws SQLException 
+		       			{
+		       				Statement stmt = (Statement) conn.createStatement();
+		       				stmt.executeUpdate("delete from Debt_Report_1 where return_36_months=0 and Fund_Type='"+Fund_Type+"'");
+		       				
+		       				System.out.println("36 Months Returns which are 0  are removed");
+		       			}
+		       		});
 //		             
-										             Query query = ssn.createQuery("delete from Debt_Report_1 where return_36_months=0 and Fund_Type='"+Fund_Type+"'");
+//										             Query query = (Query) ssn.createQuery("delete from Debt_Report_1 where return_36_months=0 and Fund_Type='"+Fund_Type+"'");
 //										              
-										             int result_2 = query.executeUpdate();
+//										             int result_2 = query.executeUpdate();
 //										              
-										             if (result_2 > 0) {
-										                 System.out.println("36 Months Returns which are 0  are removed");
-										             }
+//										             if (result_2 > 0) {
+//										                 System.out.println("36 Months Returns which are 0  are removed");
+//										             }
 										             
 										             ArrayList<Debt_Report_1> drm = (ArrayList<Debt_Report_1>) ssn.createQuery("from Debt_Report_1 where Fund_Type='"+Fund_Type+"'").list();
 //										             

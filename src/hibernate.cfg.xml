@@ -74,6 +74,11 @@
          <mapping class="Others_Model.Client_Databse_email"/>
         <!-- New ELSS -->
          <mapping class="New_Elss_Model.New_Elss_Model"/> 
-        
+        <!-- New Rolling Return Report -->
+        <mapping class="model.Rolling_Return"/>
+        <mapping class="model.New_Rolling_Report2"/>
+        <mapping class="model.Scheme_available"/>
+        <mapping class="model.Debt_Report_New" />
+        <mapping class="BenchMarkIndex.benchmark_template" />
     </session-factory>
 </hibernate-configuration>

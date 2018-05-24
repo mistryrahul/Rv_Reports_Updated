@@ -1,5 +1,7 @@
 package debt_Controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ import javax.persistence.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.jdbc.Work;
+
+import com.mysql.jdbc.Statement;
 
 import debt_Model.Credit_rating_sum_groups;
 import debt_Model.Debt_Report_1;
@@ -51,7 +56,7 @@ public class Hybrid_Report_Main
 			    
 			    //   as on date should be fixed before executing
 			    
-			    Date Date_As_On_Report= new Date(117,11,31);
+			    Date Date_As_On_Report= new Date(118,02,31);
 			    
 //			    String Fund_Type="Debt : Liquid";
 //			    String Fund_Type="Debt : Ultra Short Term";
@@ -364,13 +369,26 @@ public class Hybrid_Report_Main
 //			                                           ///////----------xxxxx(Start)------------////                           
 //			                  
 //			             
-											             Query query = ssn.createQuery("delete from Hybrid_Report_Model where return_36_months=0 and Fund_Type ='"+Fund_Type+"'");
-//											              
-											             int result_2 = query.executeUpdate();
-//											              
-											             if (result_2 > 0) {
-											                 System.out.println("36 Months Returns which are 0  are removed");
-											             }
+//											             Query query = (Query) ssn.createQuery("delete from Hybrid_Report_Model where return_36_months=0 and Fund_Type ='"+Fund_Type+"'");
+////											              
+//											             int result_2 = query.executeUpdate();
+////											              
+//											             if (result_2 > 0) {
+//											                 System.out.println("36 Months Returns which are 0  are removed");
+//											             }
+											             
+			             
+											             ssn.doWork(new Work() {			
+											       			@Override
+											       			public void execute(Connection conn) throws SQLException 
+											       			{
+											       				Statement stmt = (Statement) conn.createStatement();
+											       				stmt.executeUpdate("delete from Hybrid_Report_Model where return_36_months=0 and Fund_Type ='"+Fund_Type+"'");
+											       				
+											       				System.out.println("36 Months Returns which are 0  are removed");
+											       			}
+											       		});	
+											             
 											             
 											             ArrayList<Hybrid_Report_Model> drm = (ArrayList<Hybrid_Report_Model>) ssn.createQuery("from Hybrid_Report_Model where Fund_Type='"+Fund_Type+"'").list();
 //											             

@@ -352,12 +352,15 @@ public class New_Elss_Main {
 		
 //		     Closing-The_Transaction
 		     
-		     if(ssn.getTransaction().isActive()) 
+//		     if(ssn.getTransaction().isActive()) 
+		     if(ssn.getTransaction()!= null)  
 		      		ssn.getTransaction().commit();
 		            
+		     
+		     if(ssn.getTransaction() != null)
 		     ssn.beginTransaction();
 		     
-		     Query query = ssn.createQuery("delete from Elss_new where year_3_return=0 and Fund_Type ='"+Fund_Type+"'");
+		     Query query = (Query) ssn.createQuery("delete from Elss_new where year_3_return=0 and Fund_Type ='"+Fund_Type+"'");
 //             
              int result_2 = query.executeUpdate();
 		     
@@ -659,7 +662,8 @@ public class New_Elss_Main {
 	     
 	    }
 		
-	    if(ssn.getTransaction().isActive())
+//	    if(ssn.getTransaction().isActive())
+	    if(ssn.getTransaction()!=null)
 		ssn.getTransaction().commit();
 		ssn.close();
 	}

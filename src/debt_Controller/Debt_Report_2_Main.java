@@ -290,7 +290,7 @@ public class Debt_Report_2_Main {
 				    	indcs.setIndex_Name(ob.getIndex_Name());
 				    	indcs.setReturn_12_months(ob.getReturn_12_months());
 				    	indcs.setReturn_36_months_CAGR(ob.getReturn_36_months_CAGR());
-				    	indcs.setFinal_Amt( ((0.4*ob.getB_12_ret_12())+(0.6*ob.getB_36_ret_36())) );
+				    	indcs.setFinal_Amt(((0.4*ob.getB_12_ret_12())+(0.6*ob.getB_36_ret_36())));
 				    	
 				    	ssn.save(indcs);
 			    	}
@@ -304,7 +304,7 @@ public class Debt_Report_2_Main {
 			         
 			         // new added 22.11.2016
 					    
-					    Query query_1 = ssn.createQuery("update Indices_ETF_Rep_2 set star='Unrated' where aum < 100");
+					    Query query_1 = (Query) ssn.createQuery("update Indices_ETF_Rep_2 set star='Unrated' where aum < 100");
 			             
 			             
 			             int result_1 = query_1.executeUpdate();
@@ -313,7 +313,7 @@ public class Debt_Report_2_Main {
 			                 System.out.println("updated INDEX Unrated where aum<100");
 			             }
 			             
-			            Query query_2 = ssn.createQuery("update Gold_ETF_Rep_2 set star='Unrated' where aum < 100");
+			            Query query_2 = (Query) ssn.createQuery("update Gold_ETF_Rep_2 set star='Unrated' where aum < 100");
 			             
 			             
 			             int result_2 = query_2.executeUpdate();
