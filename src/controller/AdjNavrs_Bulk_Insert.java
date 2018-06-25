@@ -17,6 +17,9 @@ public class AdjNavrs_Bulk_Insert {
 
 	public static void main(String[] args) 
 	{
+		
+		// ppppp
+		
 		double no_of_lines;
 		String scheme_cd="", dt="",tmp_val="";
 		final Pattern pattern = Pattern.compile("<<row>>(.+?)<</row>>");
