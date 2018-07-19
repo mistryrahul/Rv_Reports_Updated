@@ -15,6 +15,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import org.apache.poi.util.SystemOutLogger;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -34,7 +35,43 @@ public class NewEquityReportRunner {
 //	delete from  rolling_ret_New_Report;
 //  delete from Scheme_available;	
 	static ArrayList<String> rating_list=new ArrayList<String>();
-	static HashMap<Long,Double> scheme_ret =new HashMap<Long,Double>();  
+	static HashMap<Long,Double> scheme_ret =new HashMap<Long,Double>(); 
+	
+	private static ArrayList<String> schemecode_list_path_arr = new ArrayList<String>();
+	private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
+	
+	public static void generate_category_Equity()
+	{
+     	 schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_LARGE_CAP_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_MULTI_CAP_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_LARGE_AND_MID_CAP_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_MID_CAP_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_SMALL_CAP_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_ELSS_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_INFRASTRUCTURE_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_THEMATIC_CONSUMPTION_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_EQUITY_ORIENTED_JUNE_2018.txt");
+         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_ARBITRAGE_JUNE_2018.txt");         
+     	 
+         fund_Type_arr.add("EQUITY_LARGE_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_MULTI_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_MID_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_SMALL_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_ELSS_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.06.2018");
+         
+//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
+//		 String Fund_Type="Equity_Debt_Oriented";
+		 
+		 
+	}
+	
+	
+	
 	 public static void main(String args[])
 	 {   
 		 
@@ -44,34 +81,40 @@ public class NewEquityReportRunner {
 		 
 		 String Output_File_Name="";
 		 String test_sql="";
-//		 ""
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_HYBRID_ARBITRAGE_APRIL_2018.txt";
-		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_HYBRID_EQUITY_ORIENTED_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_INFRASTRUCTURE_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_SMALL_CAP_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_MID_CAP_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_MULTI_CAP_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_APRIL_2018.txt";
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_LARGE_CAP_APRIL_2018.txt";
-		 
-//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
-		 
-//		 String Fund_Type="EQUITY_ELSS_31.03.2018";
-//		 String Fund_Type="EQUITY_LARGE_CAP_31.03.2018";
-//		 String Fund_Type="EQUITY_MULTI_CAP_31.03.2018";
-//		 String Fund_Type="EQUITY_MID_CAP_31.03.2018";
-//		 String Fund_Type="EQUITY_SMALL_CAP_31.03.2018";
-//       String Fund_Type="Equity_Sector_Infrastructure_31.03.2018";
-//		 String Fund_Type="Equity_Arbitrage";
-		 String Fund_Type="Equity_Debt_Oriented";
+		 String scheme_code_list_path="";
+		 String Fund_Type="";
+
 		 int db_flag=0;
+		 int cat_count=0;
+		 generate_category_Equity(); 
+		 // Category List prepared
 		 
 		try {
+			  
+//			System.out.println(fund_Type_arr.size());
 			
+//			while(cat_count < fund_Type_arr.size())
+//			{
+//				   scheme_code_list_path = schemecode_list_path_arr.get(cat_count);
+//				   Fund_Type = 	fund_Type_arr.get(cat_count);
+//				   
+//				   System.out.println(scheme_code_list_path);
+//				   System.out.println(Fund_Type);
+//				   cat_count++;
+//			}
+//			System.exit(0);
+			
+			while(cat_count < fund_Type_arr.size())
+			{
+				
+			   scheme_code_list_path = schemecode_list_path_arr.get(cat_count);
+			   Fund_Type = 	fund_Type_arr.get(cat_count);
+			   
+			   
 			   Date staring_date = new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2000");
 
 			   // please set end date properly
-			   Date end_date = new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2018");
+			   Date end_date = new SimpleDateFormat("dd/MM/yyyy").parse("30/06/2018");
 //			   int counter=0;
 		       Date curr_date_tmp=staring_date;
 			   ArrayList<String> date_array = new ArrayList<String>();
@@ -91,7 +134,7 @@ public class NewEquityReportRunner {
 			  	   
 				while (it_s.hasNext()) // if the file has lines 
 			   	    {
-					  temp_schem_code.add(Long.parseLong(it_s.nextLine()));
+					  temp_schem_code.add(Long.parseLong(it_s.nextLine().trim()));
 			   	    }		
 		       
 		       while(curr_date_tmp.compareTo(end_date) < 0 || curr_date_tmp.compareTo(end_date)== 0)
@@ -107,11 +150,11 @@ public class NewEquityReportRunner {
 		       String date_list_arr = String.join(",", date_array);
 		       
 		       
-//		     System.out.println("-=-=-=-=-=-=-=-<Date Array>=-=-=-=-=-=-==-=-");
-//		        System.out.println(date_array);
-//		        System.out.println("-=-=-=NORMAL--=-=Array-===-=-=");
-//		        System.out.println(date_list_arr);
-//		     System.out.println("-=-=-=-=-=-=-=-<END>=-=-=-=-=-=-==-=-");
+		     System.out.println("-=-=-=-=-=-=-=-<Date Array>=-=-=-=-=-=-==-=-");
+		        System.out.println(date_array);
+		        System.out.println("-=-=-=NORMAL--=-=Array-===-=-=");
+		        System.out.println(date_list_arr);
+		     System.out.println("-=-=-=-=-=-=-=-<END>=-=-=-=-=-=-==-=-");
 		
 		      
 		     ssn = HIbernateSession.getSessionFactory().openSession(); 
@@ -121,7 +164,7 @@ public class NewEquityReportRunner {
 			 for(Long schemecode : temp_schem_code) {
 				 get_3_years_Date(ssn,date_list_arr,date_array.size(),Fund_Type,schemecode);
 				 
-//				   System.out.println("-------------------->>"+ret_type);
+				   System.out.println("-------------------->>"+ret_type);
 			       if( !ret_type.equals("NO_VAL") && !ret_type.equals("CLOSE ENDED FUND"))
 			       {
 			    	      db_flag ++;
@@ -140,7 +183,7 @@ public class NewEquityReportRunner {
 			 
 			 ssn.getTransaction().commit();
 			 ssn.beginTransaction();
-			 // 3 years return date calculated for all schemecodes in this category.
+//			  3 years return date calculated for all schemecodes in this category.
 			  
 			 Rolling_Return_New_Runner rn = new Rolling_Return_New_Runner();
              String ret = rn.Generate_Rolling_Return(Fund_Type,ssn);
@@ -163,7 +206,7 @@ public class NewEquityReportRunner {
 		     }   
 		          ssn.getTransaction().commit();   
 		          ssn.beginTransaction();
-//		     System.out.println("Before commit--=-=-=-=-=-=-"+rating_list.size());     
+		     System.out.println("Before commit--=-=-=-=-=-=-"+rating_list.size());     
 		     
 		     		     
 		    
@@ -239,7 +282,8 @@ public class NewEquityReportRunner {
 				   	 ssn.getTransaction().commit();
 				   	 ssn.beginTransaction();	
 		          
-		          if(Fund_Type.toUpperCase().contains("LARGE"))
+//				   	 System.out.println("=-=TIme to make CSV-=-=-");
+		          if(Fund_Type.toUpperCase().contains("LARGE") && !Fund_Type.toUpperCase().contains("MID"))
 			   		{   
 		         	
 		         	Output_File_Name="Large_Cap_Report.csv";
@@ -247,9 +291,14 @@ public class NewEquityReportRunner {
 		         	test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F12\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 		         	
 			   		}
-			   		else if(Fund_Type.toUpperCase().contains("MID"))
+			   		else if(Fund_Type.toUpperCase().contains("MID") && !Fund_Type.toUpperCase().contains("LARGE"))
 			   		{
 			   			Output_File_Name="Mid_Cap_Report.csv";
+			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F12\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+			   		}
+			   		else if(Fund_Type.toUpperCase().contains("MID") && Fund_Type.toUpperCase().contains("LARGE"))
+			   		{
+			   			Output_File_Name="Mid_and_Large_Cap_Report.csv";
 			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F12\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 			   		}
 			   		else if(Fund_Type.toUpperCase().contains("SMALL"))
@@ -272,14 +321,20 @@ public class NewEquityReportRunner {
 			   			Output_File_Name="Infrastructure_Report.csv";
 			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F36\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 			   		}
-			   		else if(Fund_Type.toUpperCase().contains("ARBITRAGE"))
+		          
+			   		else if(Fund_Type.toUpperCase().contains("ARBITRAGE") && Fund_Type.toUpperCase().contains("HYBRID"))
 			   		{
 			   			Output_File_Name="Equity_Arbitrage_Report.csv";
 			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F36\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 			   		}
-			   		else if(Fund_Type.toUpperCase().contains("DEBT"))
+			   		else if(Fund_Type.toUpperCase().contains("HYBRID") && !Fund_Type.toUpperCase().contains("ARBITRAGE"))
 			   		{
-			   			Output_File_Name="Equity_Debt_Oriented_Report.csv";
+			   			Output_File_Name="Hybrid_Equity_Oriented_Report.csv";
+			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F36\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+			   		}
+			   		else if(Fund_Type.toUpperCase().contains("THEMATIC"))
+			   		{
+			   			Output_File_Name="Equity_THEMATIC_Report.csv";
 			   			test_sql  ="select \"date\",\"Scheme_Code\",\"Scheme_Name\",\"AUM\",\"X2\",\"X3\",\"F36\",\"X2R\",\"X3R\" union select rrn.from_date, rrn.scheme_code,sa.scheme_name,rrn.aum,rrn.rolling_ret_2,rolling_ret_3,rrn.forward_12,if(rrn.rolling_ret_2_rating=0,'Unrated',rolling_ret_2_rating) as rolling_ret_2_rating,if(rrn.rolling_ret_3_rating=0,'Unrated',rolling_ret_3_rating) as rolling_ret_3_rating from rolling_ret_New_Report rrn join Scheme_available sa on rrn.scheme_code=sa.scheme_code and rrn.from_date=sa.from_date where rrn.Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 			   		}
 //		          Equity_Arbitrage
@@ -299,6 +354,10 @@ public class NewEquityReportRunner {
 				    ssn.close();
 				  
 				    System.out.println("---<All Reports Complete, csv file may be found in '/var/lib/mysql-files' folder>---");
+				    
+				    cat_count++;
+				    
+		  } // end-of--category-loop    
 		          
 		          
 		} 

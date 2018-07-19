@@ -1,4 +1,4 @@
-package controller;
+package NewQuarterlyReports;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,6 +25,39 @@ import model.Rolling_repor2_key;
 import sessionFactory.HIbernateSession;
 
 public class New_Rolling_Return2_Main {
+	
+private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
+	
+	public static void generate_category_Equity_Summary()
+	{
+//     	 schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_LARGE_CAP_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_MULTI_CAP_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_LARGE_AND_MID_CAP_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_MID_CAP_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_SMALL_CAP_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_ELSS_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_INFRASTRUCTURE_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/EQUITY_THEMATIC_CONSUMPTION_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_EQUITY_ORIENTED_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_ARBITRAGE_JUNE_2018.txt");         
+     	 
+         fund_Type_arr.add("EQUITY_LARGE_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_MULTI_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_MID_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_SMALL_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_ELSS_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.06.2018");
+         fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.06.2018");
+         
+//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
+//		 String Fund_Type="Equity_Debt_Oriented";
+		 
+		 
+	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -35,9 +68,24 @@ public class New_Rolling_Return2_Main {
 		Rolling_repor2_key key = null;
 		String Output_File_Name="";
 		String test_sql="";
-		 Session ssn=null;
+		Session ssn=null;
+		
+		 int cat_count=0;
+		 generate_category_Equity_Summary(); 
+		 
 		  try
-		  {
+		  {   
+			  
+				while(cat_count < fund_Type_arr.size())
+				{
+					
+//				   
+				   String Fund_Type = 	fund_Type_arr.get(cat_count);
+				   
+			  
+	 		  
+			  
+			  
 		ssn = HIbernateSession.getSessionFactory().openSession(); 
 		 ssn.beginTransaction();
 //		 int loop=0;
@@ -48,7 +96,7 @@ public class New_Rolling_Return2_Main {
 //		 String Fund_Type="EQUITY_SMALL_CAP_31.03.2018";
 //		 String Fund_Type="Equity_Sector_Infrastructure_31.03.2018";
 //		 String Fund_Type="Equity_Arbitrage";
-		 String Fund_Type="Equity_Debt_Oriented";
+//		 String Fund_Type="Equity_Debt_Oriented";
 		 
 		 Query q = ssn.createQuery("select distinct(key.from_date) from rolling_ret_New_Report where key.Fund_Type='"+Fund_Type+"' order by key.from_date");
 		    
@@ -90,7 +138,7 @@ public class New_Rolling_Return2_Main {
 		 ssn.getTransaction().commit();    
 		 System.out.println("==-=-=-==-=-< Report Generating Complte >=-=-=-=--=--==");
 		 
-		 if(Fund_Type.toUpperCase().contains("LARGE"))
+		 if(Fund_Type.toUpperCase().contains("LARGE") && !Fund_Type.toUpperCase().contains("MID") )
 	   		{   
       	
             	Output_File_Name="Summary_Large_Cap_Report.csv";
@@ -98,9 +146,14 @@ public class New_Rolling_Return2_Main {
             	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
       	
 	   		}
-	   		else if(Fund_Type.toUpperCase().contains("MID"))
+	   		else if(Fund_Type.toUpperCase().contains("MID") && !Fund_Type.toUpperCase().contains("LARGE") )
 	   		{
 	   			Output_File_Name="Summary_Mid_Cap_Report.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+	   		else if(Fund_Type.toUpperCase().contains("MID") && Fund_Type.toUpperCase().contains("LARGE") )
+	   		{
+	   			Output_File_Name="Summary_Mid_And_Large_Cap_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("SMALL"))
@@ -123,11 +176,22 @@ public class New_Rolling_Return2_Main {
 	   			Output_File_Name="Summary_Infrastructure_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
-	   		else if(Fund_Type.toUpperCase().contains("ARBITRAGE"))
+	   		else if(Fund_Type.toUpperCase().contains("ARBITRAGE") && Fund_Type.toUpperCase().contains("HYBRID"))
 	   		{
 	   			Output_File_Name="Summary_Equity_Arbitrage_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
+	   		else if(Fund_Type.toUpperCase().contains("HYBRID") && !Fund_Type.toUpperCase().contains("ARBITRAGE"))
+	   		{
+	   			Output_File_Name="Summary_Hybrid_Equity_Oriented_Report.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+	   		else if(Fund_Type.toUpperCase().contains("THEMATIC"))
+	   		{
+	   			Output_File_Name="Summary_Equity_Thematic_Report.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+		 
 	   		else if(Fund_Type.toUpperCase().contains("DEBT"))
 	   		{
 	   			Output_File_Name="Summary_Equity_Debt_Oriented_Report.csv";
@@ -148,8 +212,10 @@ public class New_Rolling_Return2_Main {
 		    ssn.close();
 		  
 		    System.out.println("---<All Reports Complete, csv file may be found in '/var/lib/mysql-files' folder>---");
+		    
+		    cat_count++;
 		 
-		 
+	} // end-of-category-loop
 //	     for(Object[] d: datas)
 //	     {
 //	    	  System.out.println(d[0]);

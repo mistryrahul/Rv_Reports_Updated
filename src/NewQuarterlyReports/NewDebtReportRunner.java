@@ -31,7 +31,46 @@ import sessionFactory.HIbernateSession;
 
 public class NewDebtReportRunner {
 
+//	private static ArrayList<String> schemecode_list_path_arr = new ArrayList<String>();
+	private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
 	
+	public static void generate_category()
+	{
+//     	 schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_LIQUID_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_ULTRA_SHORT_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_LOW_DURATION_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_SHORT_DURATION_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_MEDIUM_DURATION_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_MEDIUM_TO_LONG_DURATION_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_GILT_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_DYNAMIC_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_BANKING_PSU_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_CORPORATE_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/DEBT_CREDIT_RISK_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_DEBT_ORIENTED_BALANCED_JUNE_2018.txt");
+//         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_DEBT_ORIENTED_CONSERVATIVE_JUNE_2018.txt");
+         
+     	 
+//         fund_Type_arr.add("Debt : Liquid");
+//         fund_Type_arr.add("Debt : Ultra Short Duration");
+//         fund_Type_arr.add("Debt : Low Duration");
+//         fund_Type_arr.add("Debt : Short Duration");
+         fund_Type_arr.add("Debt : Medium Duration");
+//         fund_Type_arr.add("Debt : Medium to Long Duration");
+//         fund_Type_arr.add("Debt : Gilt");
+//         fund_Type_arr.add("Debt : Dynamic Bond");
+//         fund_Type_arr.add("Debt : Banking & PSU");
+//         fund_Type_arr.add("Debt : Corporate Bond");
+//         fund_Type_arr.add("Debt : Credit Risk");
+//         fund_Type_arr.add("Hybrid : Debt Oriented (Balanced)");
+//         fund_Type_arr.add("Hybrid : Debt Oriented (Conservative)");
+//         fund_Type_arr.add("Debt_30.06.2018");
+         
+//		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
+//		 String Fund_Type="Equity_Debt_Oriented";
+		 
+		 
+	}
 	
 //	delete from rolling_ret_New_Report where Fund_Type="";
 //	delete from Debt_Report_New where Fund_Type="";
@@ -57,25 +96,31 @@ public class NewDebtReportRunner {
 		String class_chk=null;
 		java.util.Date date_chk=null;
 		long tmp_sc=0;
+		 int cat_count=0;
+		 generate_category();
 		
 		try
 		  {
+			
+			while(cat_count < fund_Type_arr.size())
+		   {
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(118, 02, 31);  // as on date should be fixed before running
+		    Date Date_As_On_Report= new Date(118, 05, 30);  // as on date should be fixed before running
  		    ArrayList<Long> scheme_codes = new ArrayList<Long>();
- 		    
+// 		    
 //		    String Fund_Type="Debt : Liquid";
 //		    String Fund_Type="Debt : Ultra Short Term";		    
 //		    String Fund_Type="Debt : Short Term";	
 //		    String Fund_Type="Debt : Long Term";
 //		    String Fund_Type="Debt : Medium Term";
 //		    String Fund_Type="Hybrid : Debt Oriented";
-		    String Fund_Type="Debt : Dynamic Bond";
+//		    String Fund_Type="Debt : Dynamic Bond";
 		    String dd_1 = new SimpleDateFormat("yyyy-MM-dd").format(Date_As_On_Report);		   
 //		    String Fund_Type="Debt : Medium & Long Term";
 //		    
+		    String Fund_Type = fund_Type_arr.get(cat_count);
 		    
 		    String Comment=Fund_Type+"_as_on_"+dd_1;
 		    String Output_File_Name="";
@@ -396,7 +441,7 @@ public class NewDebtReportRunner {
                     	 Output_File_Name="Debt_Liquid.csv";
                     	 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
-                    else if(Fund_Type.toUpperCase().contains("ULTRA"))
+                    else if(Fund_Type.toUpperCase().contains("ULTRA") && Fund_Type.toUpperCase().contains("SHORT"))
  			   		{
                     	Output_File_Name="Debt_UltraShort.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
@@ -406,28 +451,60 @@ public class NewDebtReportRunner {
                     	Output_File_Name="Debt_Short.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
-                    else if(Fund_Type.toUpperCase().contains("MEDIUM"))
+                    else if(Fund_Type.toUpperCase().contains("MEDIUM") && !Fund_Type.toUpperCase().contains("LONG"))
  			   		{
                     	Output_File_Name="Debt_Medium.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
-                    else if(Fund_Type.toUpperCase().contains("LONG"))
+                    else if(Fund_Type.toUpperCase().contains("LONG") && Fund_Type.toUpperCase().contains("MEDIUM"))
  			   		{
-                    	Output_File_Name="Debt_Long.csv";
+                    	Output_File_Name="Debt_MEdium_to_Long.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
+                    else if(Fund_Type.toUpperCase().contains("LOW"))
+  			   		{   
+                     	 Output_File_Name="Debt_Low_DURATION.csv";
+                     	 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+  			   		}
+                    else if(Fund_Type.toUpperCase().contains("GILT"))
+  			   		{   
+                     	 Output_File_Name="Debt_Gilt_Fund.csv";
+                     	 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+  			   		}                     
                     else if(Fund_Type.toUpperCase().contains("DYNAMIC") && Fund_Type.toUpperCase().contains("BOND"))
  			   		{
                     	Output_File_Name="Debt_Dynamic_Bond.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
-                     
-                     
- 			   		else if(Fund_Type.toUpperCase().contains("DEBT") && Fund_Type.toUpperCase().contains("ORIENTED"))
+                    else if(Fund_Type.toUpperCase().contains("BANKING") && Fund_Type.toUpperCase().contains("PSU"))
  			   		{
- 			   		    Output_File_Name="Hybrid_Debt_Oriented.csv";
+                    	Output_File_Name="Debt_Baning_Psu.csv";
+                    	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+ 			   		}
+                    else if(Fund_Type.toUpperCase().contains("CORPORATE") && Fund_Type.toUpperCase().contains("PSU"))
+ 			   		{
+                    	Output_File_Name="Debt_Corporate.csv";
+                    	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+ 			   		}
+                    else if(Fund_Type.toUpperCase().contains("CREDIT") && Fund_Type.toUpperCase().contains("RISK"))
+ 			   		{
+                    	Output_File_Name="Debt_Credit_Risk.csv";
+                    	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+ 			   		}
+                     
+                     
+                     
+                     
+ 			   		else if(Fund_Type.toUpperCase().contains("BALANCED") && Fund_Type.toUpperCase().contains("ORIENTED") && Fund_Type.toUpperCase().contains("HYBRID"))
+ 			   		{
+ 			   		    Output_File_Name="Hybrid_Debt_Oriented_Balanced.csv";
           			   	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
+ 			   	    else if(Fund_Type.toUpperCase().contains("CONSERVATIVE") && Fund_Type.toUpperCase().contains("ORIENTED") && Fund_Type.toUpperCase().contains("HYBRID"))
+			   		{
+			   		    Output_File_Name="Hybrid_Debt_Oriented_Conservative.csv";
+      			   	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+			   		}
 // 			   	    else if(Fund_Type.toUpperCase().contains("EQUITY") && Fund_Type.toUpperCase().contains("ORIENTED"))
 //			   		{
 // 			   	        Output_File_Name="Hybrid_Equity_Oriented.csv"; 
@@ -462,7 +539,11 @@ public class NewDebtReportRunner {
 //           		    ssn.close();
            		  
            		    System.out.println("<--------------------Generating Csv---Please open folder /var/lib/mysql-Files to see the reports------------------->"); 
-                      
+                    ssn.close();  
+                    
+                    cat_count++;
+                    
+		  }// end-of-main-category-loop
 			  
 		  }
 		  catch(Exception e)
@@ -472,7 +553,9 @@ public class NewDebtReportRunner {
 		finally
 		{
 //			ssn.getTransaction().commit();
-     	    ssn.close();
+			if(ssn.isOpen())
+     	      ssn.close();
+			
 		    System.out.println("<<<<----Report COmplete----->>>>>");
 		}
 	}
