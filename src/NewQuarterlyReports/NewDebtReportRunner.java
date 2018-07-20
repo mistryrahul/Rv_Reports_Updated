@@ -51,19 +51,19 @@ public class NewDebtReportRunner {
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_DEBT_ORIENTED_CONSERVATIVE_JUNE_2018.txt");
          
      	 
-//         fund_Type_arr.add("Debt : Liquid");
-//         fund_Type_arr.add("Debt : Ultra Short Duration");
-//         fund_Type_arr.add("Debt : Low Duration");
-//         fund_Type_arr.add("Debt : Short Duration");
+         fund_Type_arr.add("Debt : Liquid");
+         fund_Type_arr.add("Debt : Ultra Short Duration");
+         fund_Type_arr.add("Debt : Low Duration");
+         fund_Type_arr.add("Debt : Short Duration");
          fund_Type_arr.add("Debt : Medium Duration");
-//         fund_Type_arr.add("Debt : Medium to Long Duration");
-//         fund_Type_arr.add("Debt : Gilt");
-//         fund_Type_arr.add("Debt : Dynamic Bond");
-//         fund_Type_arr.add("Debt : Banking & PSU");
-//         fund_Type_arr.add("Debt : Corporate Bond");
-//         fund_Type_arr.add("Debt : Credit Risk");
-//         fund_Type_arr.add("Hybrid : Debt Oriented (Balanced)");
-//         fund_Type_arr.add("Hybrid : Debt Oriented (Conservative)");
+         fund_Type_arr.add("Debt : Medium to Long Duration");
+         fund_Type_arr.add("Debt : Gilt");
+         fund_Type_arr.add("Debt : Dynamic Bond");
+         fund_Type_arr.add("Debt : Banking & PSU");
+         fund_Type_arr.add("Debt : Corporate Bond");
+         fund_Type_arr.add("Debt : Credit Risk");
+         fund_Type_arr.add("Hybrid : Debt Oriented (Balanced)");
+         fund_Type_arr.add("Hybrid : Debt Oriented (Conservative)");
 //         fund_Type_arr.add("Debt_30.06.2018");
          
 //		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
@@ -136,7 +136,8 @@ public class NewDebtReportRunner {
 		    Report_6_pk key =null;
 		    
 //		    List<Object[]> result= ssn.createSQLQuery("select csrg.* from credit_rating_sum_groups csrg join scheme_details_fulls sdf on csrg.schemecode=sdf.schemecode where csrg.invdate='2016-12-31' and csrg.classification like '%Liquid%' and sdf.type_code!=2").list();
-		    List<Object[]> result= ssn.createSQLQuery("select csrg.* from credit_rating_sum_groups csrg join scheme_details_fulls sdf on csrg.schemecode=sdf.schemecode where csrg.classification like '%"+Fund_Type+"%' and sdf.type_code!=2 and invdate=(select max(invdate) from credit_rating_sum_groups) order by schemecode").list(); 
+//		    List<Object[]> result= ssn.createSQLQuery("select csrg.* from credit_rating_sum_groups csrg join scheme_details_fulls sdf on csrg.schemecode=sdf.schemecode where csrg.classification like '%"+Fund_Type+"%' and sdf.type_code!=2 and invdate=(select max(invdate) from credit_rating_sum_groups) order by schemecode").list();
+		    List<Object[]> result= ssn.createSQLQuery("select csrg.* from credit_rating_sum_groups csrg join scheme_details_fulls sdf on csrg.schemecode=sdf.schemecode where csrg.classification='"+Fund_Type+"' and sdf.type_code!=2 and invdate=(select max(invdate) from credit_rating_sum_groups) order by schemecode").list();
 //		    List<Object[]> result= ssn.createSQLQuery("select * from credit_rating_sum_groups where classification like '%Liquid%' order by schemecode").list();
 		    
 		    for(int i=0;i<result.size();i++)
@@ -466,7 +467,7 @@ public class NewDebtReportRunner {
                      	 Output_File_Name="Debt_Low_DURATION.csv";
                      	 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
   			   		}
-                    else if(Fund_Type.toUpperCase().contains("GILT"))
+                    else if(Fund_Type.toUpperCase().contains("GILT") && !Fund_Type.toUpperCase().contains("10 Yr Constant Duration"))
   			   		{   
                      	 Output_File_Name="Debt_Gilt_Fund.csv";
                      	 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
@@ -541,6 +542,9 @@ public class NewDebtReportRunner {
            		    System.out.println("<--------------------Generating Csv---Please open folder /var/lib/mysql-Files to see the reports------------------->"); 
                     ssn.close();  
                     
+                    
+                    
+                    dr_m.clear();
                     cat_count++;
                     
 		  }// end-of-main-category-loop
