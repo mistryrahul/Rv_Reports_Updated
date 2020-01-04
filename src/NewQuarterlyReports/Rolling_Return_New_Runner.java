@@ -185,7 +185,7 @@ public class Rolling_Return_New_Runner
 //			        			rr.setForward_12(0.00);
 //			        		}
 //			        	 }
-//			        	else if(year==4) // not using
+//			        	 if(year==4) // not using
 //			        	{
 //			        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
 //			        		rr.setRolling_ret_4(rs.getDouble(1));

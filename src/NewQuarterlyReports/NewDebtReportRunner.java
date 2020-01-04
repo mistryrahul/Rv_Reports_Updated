@@ -51,20 +51,27 @@ public class NewDebtReportRunner {
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_DEBT_ORIENTED_CONSERVATIVE_JUNE_2018.txt");
          
      	 
-         fund_Type_arr.add("Debt : Liquid");
+           fund_Type_arr.add("Debt : Liquid");
+		
          fund_Type_arr.add("Debt : Ultra Short Duration");
          fund_Type_arr.add("Debt : Low Duration");
          fund_Type_arr.add("Debt : Short Duration");
          fund_Type_arr.add("Debt : Medium Duration");
          fund_Type_arr.add("Debt : Medium to Long Duration");
-         fund_Type_arr.add("Debt : Gilt");
-         fund_Type_arr.add("Debt : Dynamic Bond");
-         fund_Type_arr.add("Debt : Banking & PSU");
-         fund_Type_arr.add("Debt : Corporate Bond");
-         fund_Type_arr.add("Debt : Credit Risk");
-         fund_Type_arr.add("Hybrid : Debt Oriented (Balanced)");
-         fund_Type_arr.add("Hybrid : Debt Oriented (Conservative)");
-//         fund_Type_arr.add("Debt_30.06.2018");
+//         fund_Type_arr.add("Debt : Gilt");
+//         fund_Type_arr.add("Debt : Dynamic Bond");
+//         fund_Type_arr.add("Debt : Banking & PSU");
+//         fund_Type_arr.add("Debt : Corporate Bond");
+//         fund_Type_arr.add("Debt : Credit Risk");
+//         fund_Type_arr.add("Debt : Money Market");
+//         fund_Type_arr.add("Hybrid : Debt Oriented (Balanced)");
+//         fund_Type_arr.add("Hybrid : Debt Oriented (Conservative)");
+//    	   fund_Type_arr.add("Debt : Overnight");
+
+           
+           
+           
+//           fund_Type_arr.add("Debt_30.06.2018");
          
 //		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
 //		 String Fund_Type="Equity_Debt_Oriented";
@@ -107,7 +114,7 @@ public class NewDebtReportRunner {
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(118, 05, 30);  // as on date should be fixed before running
+		    Date Date_As_On_Report= new Date(119, 8, 30);  // as on date should be fixed before running
  		    ArrayList<Long> scheme_codes = new ArrayList<Long>();
 // 		    
 //		    String Fund_Type="Debt : Liquid";
@@ -232,12 +239,15 @@ public class NewDebtReportRunner {
 		    			   System.out.println("schemecode-->>"+ dr_m.get(0).getKey().getScheme_code());
 		    			   		    			   
 		    			   ssn.save(dr_m.get(0));
+		    			   
+		    			   dr_m.clear();
+		    			   
 		    			   ssn.getTransaction().commit();
 		    			   ssn.beginTransaction();
 		    			   ssn.flush();
 		    			   ssn.clear();
 		    			   
-		    			   dr_m.clear();
+		    			   
 		    			   
 		    			   
 		    			   
@@ -409,9 +419,10 @@ public class NewDebtReportRunner {
 										             
 //										             Query qry_1 = ssn.createQuery("from Debt_Report_1");
 										             ArrayList<Debt_Report_New> drm1 = (ArrayList<Debt_Report_New>) ssn.createQuery("from Debt_Report_New where Fund_Type='"+Fund_Type+"'").list();
+										             
 										             for(Debt_Report_New ob11 : drm1)
 										             {
-										            	 double comp_score = ((ob11.getRolling_ret_3() * 0.65) + (ob11.getCredit_rating()*0.35));
+										            	 double comp_score = ((ob11.getRolling_ret_3() * 0.6) + (ob11.getCredit_rating()*0.4));
 									                     
 									                     ob11.setComposite_score(comp_score);
 									                     ssn.update(ob11);
@@ -492,6 +503,11 @@ public class NewDebtReportRunner {
                     	Output_File_Name="Debt_Credit_Risk.csv";
                     	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
  			   		}
+                    else if(Fund_Type.toUpperCase().contains("MONEY") && Fund_Type.toUpperCase().contains("MARKET"))
+ 			   		{
+                    	Output_File_Name="Debt_Money_Market.csv";
+                    	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+ 			   		} 
                      
                      
                      
@@ -516,6 +532,11 @@ public class NewDebtReportRunner {
 // 			   		     Output_File_Name="Hybrid_Arbitrage.csv";
 //    			   		 test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'"; 
 // 			   		}
+	 			   	else if(Fund_Type.toUpperCase().contains("OVERNIGHT"))
+			   		{
+			   		    Output_File_Name="Debt_Overnight.csv";
+	  			   	test_sql  ="select \"scheme_code\",\"Scheme_Name\",\"AUM\",\"X3\",\"Credit_Rating\",\"Composite_Score\",\"Rating\" UNION select scheme_code,scheme_name,aum,rolling_ret_3,credit_rating,composite_score,star from Debt_Report_New where Fund_Type='"+Fund_Type+"' order by Composite_Score desc into outfile'/var/lib/mysql-files/"+Output_File_Name+"' FIELDS TERMINATED BY ','ENCLOSED BY '\'LINES TERMINATED BY '\\n'";
+			   		}
  			   		else
  			   		{
  			   			//Others
@@ -724,35 +745,35 @@ public class NewDebtReportRunner {
 			     }
 			     else if(oo.getRv_group().equalsIgnoreCase("AA"))
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*8);
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*7);
 			     }
 			     else if(oo.getRv_group().equalsIgnoreCase("A"))   // for A and  A-
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*7);	 
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*5);	 
 			     }
-			     else if(oo.getRv_group().equalsIgnoreCase("A-"))
-			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*7);	 
-			     }
-			     
+			    			     
 			     else if(oo.getRv_group().equalsIgnoreCase("Below A"))
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*5);	 
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*1);	 
 			     }
 			     
 			     else if(oo.getRv_group().equalsIgnoreCase("Others"))
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*        0);	 //not set
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*1);
 			     }
 			     else if(oo.getRv_group().equalsIgnoreCase("Deposits"))
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*        0);	 //not set	 
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*1); 
 			     }
 			     else if(oo.getRv_group().equalsIgnoreCase("Equity"))
 			     {
-			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*        0);	 //not set	 
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*1);	  
 			     }
 			     else if(oo.getRv_group().equalsIgnoreCase("Unrated"))
+			     {
+			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*        0);	 //not set	 
+			     }
+			     else if(oo.getRv_group().equalsIgnoreCase("Default"))
 			     {
 			    	 tot_val = tot_val + ((tmp_hld_prcnt/100)*        0);	 //not set	 
 			     }

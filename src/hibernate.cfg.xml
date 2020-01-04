@@ -15,7 +15,7 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/rupeevest_nav</property>
+        <property name="connection.url">jdbc:mysql://localhost/rupeevest_development1</property>
         <property name="connection.username">root</property>
         <property name="connection.password">admin123</property>
 
@@ -32,7 +32,7 @@
         <property name="show_sql">true</property>
   
          <!-- For Batch Insert -->
-        <property name="hibernate.jdbc.batch_size">50</property>
+        <property name="hibernate.jdbc.batch_size">0</property>
 		<property name="hibernate.order_inserts">true</property>
 		<property name="hibernate.order_updates">true</property>
 		<property name="hibernate.jdbc.batch_versioned_data">true</property>
@@ -42,10 +42,10 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Names the annotated entity class -->
-        <mapping class="model.Navhistfull_adjnavrs"/> 
-        <mapping class="model.nav_hist"/> 
+        <!-- <mapping class="model.Navhistfull_adjnavrs"/> 
+        <mapping class="model.nav_hist"/> --> 
         <mapping class="model.Scheme_Detail"/>
-        <mapping class="model.nav_report_3_stable"/>
+        <!-- <mapping class="model.nav_report_3_stable"/>
         <mapping class="model.Avg_ret_Model"/> 
         <mapping class="model.Qtr_Avg"/> 
         <mapping class="model.Nav_report_temp_1"/> 
@@ -60,20 +60,20 @@
         <mapping class="model.Schemeisin"/> 
         <mapping class="model.nav_report_3_Addition"/>
         <mapping class="model.Standard_Dev"/>
-        <mapping class="model.Custom_Report"/>
+        <mapping class="model.Custom_Report"/> -->
         <!-- Debt Reports -->
-        <mapping class="debt_Model.Avg_maturity"/>
+        <!-- <mapping class="debt_Model.Avg_maturity"/>
         <mapping class="debt_Model.Debt_Report_1"/>
         <mapping class="debt_Model.Index_Master"/>
         <mapping class="debt_Model.Debt_Report_2"/> 
         <mapping class="debt_Model.Indices_ETF_Rep_2"/>
         <mapping class="debt_Model.Gold_ETF_Rep_2"/> 
         <mapping class="debt_Model.Hybrid_Report_Model"/>   
-        <mapping class="controller.Excel_Rank_generator_Model"/>
+        <mapping class="controller.Excel_Rank_generator_Model"/> -->
         <!-- Others Reports -->
-         <mapping class="Others_Model.Client_Databse_email"/>
+         <!-- <mapping class="Others_Model.Client_Databse_email"/> -->
         <!-- New ELSS -->
-         <mapping class="New_Elss_Model.New_Elss_Model"/> 
+        <!--<mapping class="New_Elss_Model.New_Elss_Model"/> --> 
         <!-- New Rolling Return Report -->
         <mapping class="model.Rolling_Return"/>
         <mapping class="model.New_Rolling_Report2"/>

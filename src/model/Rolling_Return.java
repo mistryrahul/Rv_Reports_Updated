@@ -13,6 +13,12 @@ public class Rolling_Return {
 //	 double rolling_ret_5;
 //	 double rolling_ret_4;
 	 
+	 double rolling_ret_5;
+	 int rolling_ret_5_rating;
+	 
+	 double rolling_ret_4;
+	 int rolling_ret_4_rating;
+	 
 	 double rolling_ret_3;
 	 int rolling_ret_3_rating;
 	 
@@ -28,18 +34,18 @@ public class Rolling_Return {
 	public void setKey(Report_6_pk key) {
 		this.key = key;
 	}
-//	public double getRolling_ret_5() {
-//		return rolling_ret_5;
-//	}
-//	public void setRolling_ret_5(double rolling_ret_5) {
-//		this.rolling_ret_5 = rolling_ret_5;
-//	}
-//	public double getRolling_ret_4() {
-//		return rolling_ret_4;
-//	}
-//	public void setRolling_ret_4(double rolling_ret_4) {
-//		this.rolling_ret_4 = rolling_ret_4;
-//	}
+	public double getRolling_ret_5() {
+		return rolling_ret_5;
+	}
+	public void setRolling_ret_5(double rolling_ret_5) {
+		this.rolling_ret_5 = rolling_ret_5;
+	}
+	public double getRolling_ret_4() {
+		return rolling_ret_4;
+	}
+	public void setRolling_ret_4(double rolling_ret_4) {
+		this.rolling_ret_4 = rolling_ret_4;
+	}
 	public double getRolling_ret_3() {
 		return rolling_ret_3;
 	}

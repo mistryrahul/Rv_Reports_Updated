@@ -41,16 +41,22 @@ private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_EQUITY_ORIENTED_JUNE_2018.txt");
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_ARBITRAGE_JUNE_2018.txt");         
      	 
-         fund_Type_arr.add("EQUITY_LARGE_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_MULTI_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_MID_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_SMALL_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_ELSS_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.06.2018");
-         fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.06.2018");
+		    fund_Type_arr.add("EQUITY_LARGE_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_MULTI_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_MID_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_SMALL_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_ELSS_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.09.2019");
+	        
+	        fund_Type_arr.add("HYBRID_DYNAMIC_ASSET_SELECTION_CAP_30.09.2019");
+	        fund_Type_arr.add("EQUITY_VALUE_CONTRA_CAP_30.09.2019");
+	        fund_Type_arr.add("Equity_Sectoral_Financial_Services_30.09.2019");
+	        fund_Type_arr.add("Equity_Thematic_30.09.2019");
+	        fund_Type_arr.add("Hybrid_Solution_Oriented_30.09.2019");
          
 //		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
 //		 String Fund_Type="Equity_Debt_Oriented";
@@ -144,58 +150,106 @@ private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
             	Output_File_Name="Summary_Large_Cap_Report.csv";
 //      	String test_sql ="select  \"from_date\", \"scheme_code\", \"quarter\", \"Scheme Name\", \"X1\", \"X2\", \"X3\", \"X4\", \"X5\", \"X6\", \"X7\", \"X8\", \"X9\", \"X10\",\"X11\", \"X12\", \"X13\", \"X14\", \"X15\", \"X16\", \"X17\", \"X18\", \"X19\", \"X20\", \"X21\", \"R_X1\", \"R_X2\", \"R_X3\", \"R_X4\", \"R_X5\", \"R_X6\", \"R_X7\", \"R_X8\", \"R_X9\", \"R_X10\", \"R_X11\", \"R_X12\", \"R_X13\", \"R_X14\", \"R_X15\", \"R_X16\", \"R_X17\", \"R_X18\", \"R_X19\", \"R_X20\", \"R_X21\", \"F12\", \"R_F12\", \"Z1\", \"Z2\", \"Z3\", \"Z4\" UNION ALL select from_date, scheme_code, quarter, Scheme_Name, backward_6, backward_12, backward_18, backward_24, backward_30, backward_36, backward_42, backward_48, backward_54, backward_60, year_1_1, year_1_2, year_1_3, year_1_4, max_Drawdown_year_1, max_Drawdown_year_2, max_Drawdown_year_3, max_Drawdown_year_4, max_Drawdown_year_5, avg_return_50_minus_200, last_200_day_return, R_backward_6, R_backward_12, R_backward_18, R_backward_24, R_backward_30, R_backward_36, R_backward_42, R_backward_48, R_backward_54, R_backward_60, R_year_1_1, R_year_1_2, R_year_1_3, R_year_1_4, R_max_Drawdown_year_1, R_max_Drawdown_year_2, R_max_Drawdown_year_3, R_max_Drawdown_year_4, R_max_Drawdown_year_5, R_avg_return_50_minus_200, R_last_200_day_return, forwar_12_mnths, R_forwar_12_mnths, backward_12, backward_24, ex_ratio, sc_aum from Custom_Merged_Report_W_Rank where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'  FIELDS TERMINATED BY ','   ENCLOSED BY '\"' LINES TERMINATED BY '\\n'";
             	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
       	
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("MID") && !Fund_Type.toUpperCase().contains("LARGE") )
 	   		{
 	   			Output_File_Name="Summary_Mid_Cap_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("MID") && Fund_Type.toUpperCase().contains("LARGE") )
 	   		{
 	   			Output_File_Name="Summary_Mid_And_Large_Cap_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("SMALL"))
 	   		{
 	   			Output_File_Name="Summary_Small_Cap_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("MULTI"))
 	   		{
 	   			Output_File_Name="Summary_Multi_Cap_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("ELSS"))
 	   		{
 	   			Output_File_Name="Summary_Elss_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("INFRASTRUCTURE"))
 	   		{
 	   			Output_File_Name="Summary_Infrastructure_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
 	   		else if(Fund_Type.toUpperCase().contains("ARBITRAGE") && Fund_Type.toUpperCase().contains("HYBRID"))
 	   		{
 	   			Output_File_Name="Summary_Equity_Arbitrage_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
-	   		else if(Fund_Type.toUpperCase().contains("HYBRID") && !Fund_Type.toUpperCase().contains("ARBITRAGE"))
+	   		else if(Fund_Type.toUpperCase().contains("HYBRID") && !Fund_Type.toUpperCase().contains("ARBITRAGE") && !Fund_Type.toUpperCase().contains("ASSET") && !Fund_Type.toUpperCase().contains("SOLUTION"))
 	   		{
 	   			Output_File_Name="Summary_Hybrid_Equity_Oriented_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
-	   		else if(Fund_Type.toUpperCase().contains("THEMATIC"))
+	   		else if(Fund_Type.toUpperCase().contains("THEMATIC") && !Fund_Type.toUpperCase().contains("CONSUMPTION"))
 	   		{
 	   			Output_File_Name="Summary_Equity_Thematic_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
-		 
-	   		else if(Fund_Type.toUpperCase().contains("DEBT"))
+	   		else if(Fund_Type.toUpperCase().contains("THEMATIC") && Fund_Type.toUpperCase().contains("CONSUMPTION"))
 	   		{
-	   			Output_File_Name="Summary_Equity_Debt_Oriented_Report.csv";
+	   			Output_File_Name="Summary_Equity_Thematic_Consumption_Report.csv";
 	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+	   		else if(Fund_Type.toUpperCase().contains("HYBRID") && Fund_Type.toUpperCase().contains("DYNAMIC")&&Fund_Type.toUpperCase().contains("ASSET"))
+	   		{
+	   			Output_File_Name="Summary_Hybrid_Dynamic_Asset_Report.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+	   		else if(Fund_Type.toUpperCase().contains("HYBRID") && Fund_Type.toUpperCase().contains("SOLUTION"))
+	   		{
+	   			Output_File_Name="Summary_Hybrid_Solution_Oriented.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+	   		else if(Fund_Type.toUpperCase().contains("SECTORAL") && Fund_Type.toUpperCase().contains("FINANCIAL") && Fund_Type.toUpperCase().contains("SERVICES"))
+	   		{
+	   			Output_File_Name="Summary_Sectorial_Financial_Services.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+	   		}
+		   
+		 
+	   		else if(Fund_Type.toUpperCase().contains("VALUE") && Fund_Type.toUpperCase().contains("CONTRA"))
+	   		{
+	   			Output_File_Name="Summary_Equity_VALUE_CONTRA_Report.csv";
+	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//            	test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\",\"X5\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4,avg_of_top_forward_12_rr5 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
+//	   			test_sql  ="select \"DATE\",\"No Of Funds\",\"Category Avg\",\"X2\",\"X3\" ,\"X4\" UNION select from_date,no_of_funds,avg_of_forward_12_rr2,avg_of_top_forward_12_rr2,avg_of_top_forward_12_rr3,avg_of_top_forward_12_rr4 from New_Rolling_Report2 where Fund_Type='"+Fund_Type+"'into outfile'/var/lib/mysql-files/"+Output_File_Name+"'FIELDS TERMINATED BY ','ENCLOSED BY '\"'LINES TERMINATED BY '\\n'";
 	   		}
        final String  final_sql=test_sql;
 		    
@@ -233,8 +287,9 @@ private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
 				 {
 				    
 					ssn.close();
-					
+					System.out.println("Session CLosed");
 				 }
+			  System.out.println("----All Reports Completed----");
 		  }
 
 	}
@@ -296,42 +351,42 @@ private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
 //				            System.out.println("GOT Result From Stored Procedure-->>>"+rs.getDouble(1));
 //				            System.out.println("Forward_Return-->>>"+rs.getDouble(2));
 //				            System.out.println("GOT Result From Stored Procedure-->>>"+rs.getDouble(3));
-				        	if(return_year==5)
-				        	 {
-				        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
-				        		rr.setAvg_of_forward_12_rr2(rs.getDouble(1));
-				        			        		
-				        		if(Double.compare(rs.getDouble(2),-99999.99)!=0)
-				        			{
-				        			   rr.setAvg_of_top_forward_12_rr5(rs.getDouble(2));
-				        			}
-				        		else
-				        		{
-//				        			System.out.println("In ELSE PART 5"); 
-				        			rr.setAvg_of_top_forward_12_rr5(0);
-				        		}
-				        		
-				        		if(Double.compare(rs.getDouble(3),-99999.99)!=0)
-				        			rr.setNo_of_funds(rs.getInt(3));
-				        	 }
-				        	else if(return_year==4)
-				        	{
-				        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
-					        		rr.setAvg_of_forward_12_rr2(rs.getDouble(1));
-					        			        		
-					        		if(Double.compare(rs.getDouble(2),-99999.99)!=0)
-					        			{
-					        			   rr.setAvg_of_top_forward_12_rr4(rs.getDouble(2));
-					        			}
-					        		else
-					        		{
-//					        			System.out.println("In ELSE PART 5"); 
-					        			rr.setAvg_of_top_forward_12_rr4(0);
-					        		}
-					        		if(Double.compare(rs.getDouble(3),-99999.99)!=0)
-					        			rr.setNo_of_funds(rs.getInt(3));
-				        	}
-				        	else if(return_year==3)
+//				        	if(return_year==5)
+//				        	 {
+//				        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
+//				        		rr.setAvg_of_forward_12_rr2(rs.getDouble(1));
+//				        			        		
+//				        		if(Double.compare(rs.getDouble(2),-99999.99)!=0)
+//				        			{
+//				        			   rr.setAvg_of_top_forward_12_rr5(rs.getDouble(2));
+//				        			}
+//				        		else
+//				        		{
+////				        			System.out.println("In ELSE PART 5"); 
+//				        			rr.setAvg_of_top_forward_12_rr5(0);
+//				        		}
+//				        		
+//				        		if(Double.compare(rs.getDouble(3),-99999.99)!=0)
+//				        			rr.setNo_of_funds(rs.getInt(3));
+//				        	 }
+//				        	if(return_year==4)
+//				        	{
+//				        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
+//					        		rr.setAvg_of_forward_12_rr2(rs.getDouble(1));
+//					        			        		
+//					        		if(Double.compare(rs.getDouble(2),-99999.99)!=0)
+//					        			{
+//					        			   rr.setAvg_of_top_forward_12_rr4(rs.getDouble(2));
+//					        			}
+//					        		else
+//					        		{
+////					        			System.out.println("In ELSE PART 5"); 
+//					        			rr.setAvg_of_top_forward_12_rr4(0);
+//					        		}
+//					        		if(Double.compare(rs.getDouble(3),-99999.99)!=0)
+//					        			rr.setNo_of_funds(rs.getInt(3));
+//				        	}
+				        	if(return_year==3)
 				        	{
 				        		if(Double.compare(rs.getDouble(1),-99999.99)!=0)
 					        		rr.setAvg_of_forward_12_rr2(rs.getDouble(1));
