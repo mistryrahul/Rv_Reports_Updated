@@ -62,23 +62,23 @@ public class NewEquityReportRunner {
     	 
                                           
         
-        fund_Type_arr.add("EQUITY_LARGE_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_MULTI_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_MID_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_SMALL_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_ELSS_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.09.2019");
+        fund_Type_arr.add("EQUITY_LARGE_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_MULTI_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_MID_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_SMALL_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_ELSS_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_31.12.2019");
         
-        fund_Type_arr.add("HYBRID_DYNAMIC_ASSET_SELECTION_CAP_30.09.2019");
-        fund_Type_arr.add("EQUITY_VALUE_CONTRA_CAP_30.09.2019");
+        fund_Type_arr.add("HYBRID_DYNAMIC_ASSET_SELECTION_CAP_31.12.2019");
+        fund_Type_arr.add("EQUITY_VALUE_CONTRA_CAP_31.12.2019");
           
-        fund_Type_arr.add("Equity_Sectoral_Financial_Services_30.09.2019");
-        fund_Type_arr.add("Equity_Thematic_30.09.2019");
-        fund_Type_arr.add("Hybrid_Solution_Oriented_30.09.2019");
+        fund_Type_arr.add("Equity_Sectoral_Financial_Services_31.12.2019");
+        fund_Type_arr.add("Equity_Thematic_31.12.2019");
+        fund_Type_arr.add("Hybrid_Solution_Oriented_31.12.2019");
          
 //		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
 //		 String Fund_Type="Equity_Debt_Oriented";
@@ -133,7 +133,7 @@ public class NewEquityReportRunner {
 			   Date staring_date = new SimpleDateFormat("dd/MM/yyyy").parse("31/03/2000");
 
 			   // please set end date properly
-			   Date end_date = new SimpleDateFormat("dd/MM/yyyy").parse("30/09/2019");
+			   Date end_date = new SimpleDateFormat("dd/MM/yyyy").parse("31/12/2019");
 //			   int counter=0;
 		       Date curr_date_tmp=staring_date;
 			   ArrayList<String> date_array = new ArrayList<String>();

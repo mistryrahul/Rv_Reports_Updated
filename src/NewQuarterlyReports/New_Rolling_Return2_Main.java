@@ -41,22 +41,22 @@ private static ArrayList<String> fund_Type_arr = new ArrayList<String>();
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_EQUITY_ORIENTED_JUNE_2018.txt");
 //         schemecode_list_path_arr.add("/home/rv/Desktop/files_to_upload/HYBRID_ARBITRAGE_JUNE_2018.txt");         
      	 
-		    fund_Type_arr.add("EQUITY_LARGE_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_MULTI_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_MID_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_SMALL_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_ELSS_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_30.09.2019");
+		    fund_Type_arr.add("EQUITY_LARGE_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_MULTI_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_LARGE_AND_MID_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_MID_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_SMALL_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_ELSS_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_INFRASTRUCTURE_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_THEMATIC_CONSUMPTION_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_HYBRID_EQUITY_ORIENTED_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_HYBRID_ARBITRAGE_CAP_31.12.2019");
 	        
-	        fund_Type_arr.add("HYBRID_DYNAMIC_ASSET_SELECTION_CAP_30.09.2019");
-	        fund_Type_arr.add("EQUITY_VALUE_CONTRA_CAP_30.09.2019");
-	        fund_Type_arr.add("Equity_Sectoral_Financial_Services_30.09.2019");
-	        fund_Type_arr.add("Equity_Thematic_30.09.2019");
-	        fund_Type_arr.add("Hybrid_Solution_Oriented_30.09.2019");
+	        fund_Type_arr.add("HYBRID_DYNAMIC_ASSET_SELECTION_CAP_31.12.2019");
+	        fund_Type_arr.add("EQUITY_VALUE_CONTRA_CAP_31.12.2019");
+	        fund_Type_arr.add("Equity_Sectoral_Financial_Services_31.12.2019");
+	        fund_Type_arr.add("Equity_Thematic_31.12.2019");
+	        fund_Type_arr.add("Hybrid_Solution_Oriented_31.12.2019");
          
 //		 String scheme_code_list_path="/home/rv/Desktop/files_to_upload/EQUITY_ELSS_MARCH_2018.TXT";
 //		 String Fund_Type="Equity_Debt_Oriented";

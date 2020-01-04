@@ -114,7 +114,7 @@ public class NewDebtReportRunner {
 			ssn = HIbernateSession.getSessionFactory().openSession(); 
 		    ssn.beginTransaction();	
 		    
-		    Date Date_As_On_Report= new Date(119, 8, 30);  // as on date should be fixed before running
+		    Date Date_As_On_Report= new Date(119, 11, 31);  // as on date should be fixed before running
  		    ArrayList<Long> scheme_codes = new ArrayList<Long>();
 // 		    
 //		    String Fund_Type="Debt : Liquid";

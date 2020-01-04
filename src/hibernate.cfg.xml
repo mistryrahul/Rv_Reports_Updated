@@ -15,7 +15,7 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/rupeevest_development1</property>
+        <property name="connection.url">jdbc:mysql://localhost/rupeevest_nav</property>
         <property name="connection.username">root</property>
         <property name="connection.password">admin123</property>
 
